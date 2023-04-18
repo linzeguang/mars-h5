@@ -67,4 +67,4 @@ const Footers: React.FC<WithTranslation & RouterType> = ({ t, pathname }) => {
   );
 };
 
-export default withTranslation()(withRouter(Footers));
+export default withTranslation()(withRouter(Footers)) as React.FC;
