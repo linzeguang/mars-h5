@@ -20,6 +20,7 @@ const Connector: React.FC<WithTranslation> = ({ t }) => {
       {connectors.map((connector) => (
         <Button
           key={connector.id}
+          color={isConnected ? 'gray' : 'red'}
           sx={isConnected ? { backgroundColor: theme.other.color.main } : undefined}
           onClick={() => handleConnect(connector)}
         >
