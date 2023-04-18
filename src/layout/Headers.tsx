@@ -32,6 +32,8 @@ const Headers: React.FC<WithTranslation> = ({ t, i18n }) => {
   const [modalVisible, modalHandle] = useDisclosure(false);
   const [drawerVisible, drawerHandle] = useDisclosure(false);
 
+  console.log('>>>>>> drawerVisible: ', drawerVisible);
+
   const currentLang = useMemo(
     () => languages.find((language) => language.key === i18n.language),
     [i18n.language]
