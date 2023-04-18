@@ -1,3 +1,5 @@
+import './i18n';
+
 import ReactDOM from 'react-dom/client';
 
 import flexible from './utils/flexible';
