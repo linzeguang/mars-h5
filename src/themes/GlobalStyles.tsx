@@ -8,6 +8,11 @@ const GlobalStyles: React.FC = () => (
         minHeight: '100vh',
         background: theme.fn.gradient({ from: '#FFF', to: '#F3F4F7', deg: 180 }),
       },
+
+      a: {
+        color: 'inherit',
+        textDecoration: 'none',
+      },
     })}
   />
 );

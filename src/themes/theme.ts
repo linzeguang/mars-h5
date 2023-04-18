@@ -3,8 +3,10 @@ import { MantineThemeOverride, rem } from '@mantine/core';
 import components from './components';
 
 const theme: MantineThemeOverride = {
+  fontFamily: 'PingFang SC-Semibold, PingFang SC',
   components,
   other: {
+    pageSpacing: rem(24),
     header: {
       height: rem(56),
       background: '#fff',
@@ -14,7 +16,9 @@ const theme: MantineThemeOverride = {
       height: rem(64),
       background: '#fff',
     },
-    pageSpacing: rem(24),
+    color: {
+      nav: '#36455D',
+    },
   },
 };
 

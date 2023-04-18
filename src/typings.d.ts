@@ -19,6 +19,9 @@ declare module '@mantine/core' {
     header: LayoutConfig;
     footer: LayoutConfig;
     pageSpacing: string;
+    color: {
+      nav: string;
+    };
   }
 }
 
