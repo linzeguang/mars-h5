@@ -1,10 +1,29 @@
-import { ThemeProvider } from './ThemeProvider';
-import { Welcome } from './Welcome/Welcome';
+import React, { ReactNode, Suspense } from 'react';
+import { HashRouter, Navigate, Route, Routes } from 'react-router-dom';
 
-export default function App() {
-  return (
-    <ThemeProvider>
-      <Welcome />
-    </ThemeProvider>
-  );
-}
+import Layout from './layout';
+
+const lazyload = (children: ReactNode) => <Suspense>{children}</Suspense>;
+
+const Market = React.lazy(() => import('@/pages/Market'));
+const Hold = React.lazy(() => import('@/pages/Hold'));
+const User = React.lazy(() => import('@/pages/User'));
+const CheckIn = React.lazy(() => import('@/pages/CheckIn'));
+const Answer = React.lazy(() => import('@/pages/Answer'));
+
+const App: React.FC = () => (
+  <HashRouter>
+    <Routes>
+      <Route element={<Layout />}>
+        <Route index element={<Navigate to="market" replace />} />
+        <Route path="market" element={lazyload(<Market />)} />
+        <Route path="check-in" element={lazyload(<CheckIn />)} />
+        <Route path="answer" element={lazyload(<Answer />)} />
+        <Route path="hold" element={lazyload(<Hold />)} />
+        <Route path="user" element={lazyload(<User />)} />
+      </Route>
+    </Routes>
+  </HashRouter>
+);
+
+export default App;
