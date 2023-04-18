@@ -1,4 +1,5 @@
 import { defineConfig } from 'vite';
+import svgr from 'vite-plugin-svgr';
 import react from '@vitejs/plugin-react';
 
 const path = require('path');
@@ -12,6 +13,7 @@ export default defineConfig({
         plugins: ['@emotion/babel-plugin'],
       },
     }),
+    svgr(),
   ],
   resolve: {
     alias: {

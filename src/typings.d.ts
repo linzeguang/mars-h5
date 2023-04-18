@@ -9,7 +9,17 @@ declare module '@emotion/react' {
 }
 
 declare module '@mantine/core' {
-  interface MantineThemeOther {}
+  interface LayoutConfig {
+    height: string;
+    background: string;
+    border?: string;
+  }
+
+  interface MantineThemeOther {
+    header: LayoutConfig;
+    footer: LayoutConfig;
+    pageSpacing: string;
+  }
 }
 
 export type I18nT = {

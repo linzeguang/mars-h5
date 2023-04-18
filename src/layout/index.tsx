@@ -1,10 +1,15 @@
-import React from 'react';
-import { Outlet } from 'react-router-dom';
+import React, { Fragment } from 'react';
+
+import Footers from './Footers';
+import Headers from './Headers';
+import Mains from './Mains';
 
 const Layout: React.FC = () => (
-  <div>
-    <Outlet />
-  </div>
+  <Fragment>
+    <Headers />
+    <Mains />
+    <Footers />
+  </Fragment>
 );
 
 export default Layout;
