@@ -1,19 +1,26 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import styled from '@emotion/styled';
 import { Button, ButtonProps, Flex, rem } from '@mantine/core';
 
 import { ArrowBottomSvgr } from '../Svgr';
 
-const ArrowBottom = styled(ArrowBottomSvgr)`
-  width: ${rem(14)};
+interface Props {
+  opened?: boolean;
+}
+
+const ArrowBottom = styled(ArrowBottomSvgr)<Props>`
   fill: ${({ theme }) => theme.fn.rgba(theme.other.color.main, 0.4)};
+  width: ${rem(14)};
+  transition: all 300ms;
+  transform: rotate(${({ opened }) => (opened ? '180deg' : '0')});
 `;
 
-export const Selector: React.FC<ButtonProps & React.ButtonHTMLAttributes<HTMLButtonElement>> = ({
-  children,
-  ...rest
-}) => (
+export const Selector = forwardRef<
+  HTMLButtonElement,
+  ButtonProps & React.ButtonHTMLAttributes<HTMLButtonElement> & Props
+>(({ children, opened, ...rest }, ref) => (
   <Button
+    ref={ref}
     variant="outline"
     color="gray"
     styles={(theme) => ({
@@ -31,6 +38,6 @@ export const Selector: React.FC<ButtonProps & React.ButtonHTMLAttributes<HTMLBut
     {...rest}
   >
     <Flex align="center">{children}</Flex>
-    <ArrowBottom />
+    <ArrowBottom opened={opened} />
   </Button>
-);
+));

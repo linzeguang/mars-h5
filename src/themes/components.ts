@@ -53,4 +53,25 @@ export default {
       },
     },
   },
+  Menu: {
+    styles: (theme) => ({
+      dropdown: {
+        padding: '0 1rem !important',
+        border: `1px solid ${theme.colors.gray[6]}`,
+      },
+      item: {
+        height: rem(40),
+        paddingLeft: 0,
+        paddingRight: 0,
+      },
+      divder: {
+        borderTop: `1px solid ${theme.colors.gray[6]}`,
+      },
+      itemLabel: {
+        display: 'flex',
+        alignItems: 'center',
+        color: theme.other.color.main,
+      },
+    }),
+  },
 } as MantineThemeOverride['components'];

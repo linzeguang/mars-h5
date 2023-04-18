@@ -11,6 +11,7 @@ const theme: MantineThemeOverride = {
   components,
   colors: {
     red: DEFAULT_THEME.colors.red,
+    gray: DEFAULT_THEME.colors.gray,
   },
   primaryColor: 'red',
   other: {

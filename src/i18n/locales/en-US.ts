@@ -3,4 +3,5 @@ export default {
   hold: 'Hold',
   user: 'User',
   'connect.wallet': 'Connect Wallet',
+  connecting: 'Connecting...',
 };

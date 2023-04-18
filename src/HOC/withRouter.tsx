@@ -13,5 +13,5 @@ export const withRouter = <Props extends RouterType>(Component: React.FC<Props>)
     return <Component {...props} navigate={navigate} {...location} />;
   };
 
-  return EnhancedComponent;
+  return EnhancedComponent as React.FC;
 };
