@@ -9,6 +9,7 @@ import { RouterType, withRouter } from '@/HOC';
 
 const Footer = styled.footer`
   position: fixed;
+  z-index: 10;
   bottom: 0;
   left: 0;
   right: 0;
@@ -47,7 +48,7 @@ const Footers: React.FC<WithTranslation & RouterType> = ({ t, pathname }) => {
         href: '/user',
       },
     ],
-    []
+    [t]
   );
 
   return (
@@ -56,7 +57,7 @@ const Footers: React.FC<WithTranslation & RouterType> = ({ t, pathname }) => {
         {navs.map(({ href, name, Icon }) => (
           <Nav key={href} to={href} style={{ opacity: pathname === href ? 1 : 0.5 }}>
             <Icon height={rem(24)} width={rem(24)} />
-            <Text size="xs" color={theme.other.color.nav} weight={600} sx={{ lineHeight: 2 }}>
+            <Text size="sm" color={theme.other.color.main} weight={600} sx={{ lineHeight: 2 }}>
               {name}
             </Text>
           </Nav>

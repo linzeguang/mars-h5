@@ -20,7 +20,7 @@ declare module '@mantine/core' {
     footer: LayoutConfig;
     pageSpacing: string;
     color: {
-      nav: string;
+      main: string;
     };
   }
 }

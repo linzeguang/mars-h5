@@ -13,6 +13,10 @@ const GlobalStyles: React.FC = () => (
         color: 'inherit',
         textDecoration: 'none',
       },
+
+      '*': {
+        boxSizing: 'border-box',
+      },
     })}
   />
 );

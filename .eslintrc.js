@@ -3,7 +3,7 @@ module.exports = {
   parserOptions: {
     project: './tsconfig.json',
   },
-  plugins: ['simple-import-sort'],
+  plugins: ['react-hooks', 'simple-import-sort'],
   overrides: [
     {
       files: ['**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx'],
@@ -31,6 +31,9 @@ module.exports = {
   rules: {
     'import/extensions': 'off',
     'no-restricted-exports': 'off',
+    // 'react-hooks/exhaustive-deps': 'warn',
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 'warn',
     'react/jsx-fragments': 'off',
     'react/no-unknown-property': ['error', { ignore: ['css'] }],
     'react/react-in-jsx-scope': 'off',

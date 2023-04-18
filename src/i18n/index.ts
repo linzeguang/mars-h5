@@ -1,37 +1,45 @@
-/**
- * @Author linzeguang
- * @Date 2023-03-24 12:01:28
- * @LastEditTime 2023-03-27 11:22:05
- * @LastEditors linzeguang
- * @Description
- */
-
 import { initReactI18next } from 'react-i18next';
 import i18n from 'i18next';
 
-import en from './locales/en_US';
+import en from './locales/en-US';
+import zh from './locales/zh-CN';
 
 export type I18nKeys = keyof typeof en;
 
 export enum Language {
-  EN = 'en-US',
+  EN = 'en',
+  ZH = 'zh',
 }
+
+export interface Lang {
+  label: string;
+  key: Language;
+}
+
+export const languages: Lang[] = [
+  {
+    label: 'English',
+    key: Language.EN,
+  },
+  {
+    label: '简体中文',
+    key: Language.ZH,
+  },
+];
 
 export const resources = {
   [Language.EN]: {
     translation: en,
   },
+  [Language.ZH]: {
+    translation: zh,
+  },
 };
-
-const language = Language.EN;
 
 i18n.use(initReactI18next).init({
   resources,
-  lng: language,
-  fallbackLng: language,
-  // interpolation: {
-  //   escapeValue: false,
-  // },
+  lng: Language.EN,
+  fallbackLng: Language.EN,
   detection: {
     caches: ['localStorage'],
   },
