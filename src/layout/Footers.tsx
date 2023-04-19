@@ -2,9 +2,10 @@ import React, { useMemo } from 'react';
 import { WithTranslation, withTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
-import { Flex, rem, Text, useMantineTheme } from '@mantine/core';
+import { Flex, rem, useMantineTheme } from '@mantine/core';
 
 import { HoldSvgr, MarketSvgr, UserSvgr } from '@/components/Svgr';
+import { WeightText } from '@/components/Uikit/Text';
 import { RouterType, withRouter } from '@/HOC';
 
 const Footer = styled.footer`
@@ -57,9 +58,14 @@ const Footers: React.FC<WithTranslation & RouterType> = ({ t, pathname }) => {
         {navs.map(({ href, name, Icon }) => (
           <Nav key={href} to={href} style={{ opacity: pathname === href ? 1 : 0.5 }}>
             <Icon height={rem(24)} width={rem(24)} />
-            <Text size="sm" color={theme.other.color.main} weight={600} sx={{ lineHeight: 2 }}>
+            <WeightText
+              size="sm"
+              color={theme.other.color.main}
+              weight={600}
+              sx={{ lineHeight: 2 }}
+            >
               {name}
-            </Text>
+            </WeightText>
           </Nav>
         ))}
       </Flex>

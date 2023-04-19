@@ -1,4 +1,5 @@
 import { defineConfig } from 'vite';
+import { viteMockServe } from 'vite-plugin-mock';
 import svgr from 'vite-plugin-svgr';
 import react from '@vitejs/plugin-react';
 
@@ -14,6 +15,10 @@ export default defineConfig({
       },
     }),
     svgr(),
+    viteMockServe({
+      mockPath: 'mock',
+      enable: true,
+    }),
   ],
   resolve: {
     alias: {

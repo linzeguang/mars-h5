@@ -3,10 +3,10 @@ import { Global } from '@emotion/react';
 
 const GlobalStyles: React.FC = () => (
   <Global
-    styles={(theme) => ({
+    styles={() => ({
       html: {
         minHeight: '100vh',
-        background: theme.fn.gradient({ from: '#FFF', to: '#F3F4F7', deg: 180 }),
+        background: 'linear-gradient(to bottom, #FFF 0%, #F3F4F7 54%, #F3F4F7 100%)',
       },
 
       a: {

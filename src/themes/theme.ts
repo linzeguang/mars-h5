@@ -8,6 +8,7 @@ DEFAULT_THEME.colors.gray.splice(6, 1, '#F5F8FD');
 const theme: MantineThemeOverride = {
   fontSizes: { xs: rem(10), sm: rem(12), md: rem(14), lg: rem(16), xl: rem(18) },
   fontFamily: 'PingFang SC-Semibold, PingFang SC',
+  lineHeight: 20 / 14,
   components,
   colors: {
     red: DEFAULT_THEME.colors.red,

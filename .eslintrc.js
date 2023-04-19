@@ -29,6 +29,8 @@ module.exports = {
     },
   ],
   rules: {
+    'simple-import-sort/imports': 'error',
+    'simple-import-sort/exports': 'error',
     'import/extensions': 'off',
     'no-restricted-exports': 'off',
     // 'react-hooks/exhaustive-deps': 'warn',
@@ -36,6 +38,7 @@ module.exports = {
     'react-hooks/exhaustive-deps': 'warn',
     'react/jsx-fragments': 'off',
     'react/no-unknown-property': ['error', { ignore: ['css'] }],
+    'react/no-unused-prop-types': 'off',
     'react/react-in-jsx-scope': 'off',
   },
 };

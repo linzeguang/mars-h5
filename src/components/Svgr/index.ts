@@ -1,6 +1,12 @@
+export { ReactComponent as AnswerSvgr } from './answer.svg';
+export { ReactComponent as ArrowBottomSvgr } from './arrow-bottom.svg';
+export { ReactComponent as BnbSvgr } from './bnb.svg';
+export { ReactComponent as CheckInSvgr } from './check-in.svg';
+export { ReactComponent as ConvertSvgr } from './convert.svg';
+export { ReactComponent as HoldSvgr } from './hold.svg';
+export { ReactComponent as InfoSvgr } from './info.svg';
 export { ReactComponent as LogoSvgr } from './logo.svg';
 export { ReactComponent as MarketSvgr } from './market.svg';
-export { ReactComponent as HoldSvgr } from './hold.svg';
+export { ReactComponent as SortSvgr } from './sort.svg';
+export { ReactComponent as UpSvgr } from './up.svg';
 export { ReactComponent as UserSvgr } from './user.svg';
-export { ReactComponent as BnbSvgr } from './bnb.svg';
-export { ReactComponent as ArrowBottomSvgr } from './arrow-bottom.svg';

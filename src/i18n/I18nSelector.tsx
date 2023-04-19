@@ -1,9 +1,10 @@
 import React, { useCallback, useMemo } from 'react';
 import { withTranslation } from 'react-i18next';
-import { Menu, Text } from '@mantine/core';
+import { Menu } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 
 import { Selector } from '@/components/Uikit';
+import { WeightText } from '@/components/Uikit/Text';
 
 import { Lang, languages } from '.';
 
@@ -35,7 +36,7 @@ const I18nSelector = withTranslation()(({ i18n }) => {
     >
       <Menu.Target>
         <Selector opened={opened} onClick={toggle}>
-          <Text onClick={toggle}>{currentLang?.label}</Text>
+          <WeightText onClick={toggle}>{currentLang?.label}</WeightText>
         </Selector>
       </Menu.Target>
       <Menu.Dropdown>

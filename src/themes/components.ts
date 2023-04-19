@@ -74,4 +74,72 @@ export default {
       },
     }),
   },
+  Text: {
+    defaultProps: (theme) => ({
+      color: theme.other.color.main,
+    }),
+    styles: () => ({
+      root: {
+        fontFamily: 'PingFang SC-Regular, PingFang SC',
+        fontWeight: 400,
+      },
+    }),
+  },
+  Tabs: {
+    styles: (theme) => ({
+      tabsList: {
+        border: 'none',
+      },
+      tab: {
+        padding: `${rem(8)} ${rem(8)} ${rem(14)}`,
+        fontSize: rem(14),
+        lineHeight: theme.lineHeight,
+        color: theme.other.color.main,
+        border: 'none',
+        opacity: 0.5,
+
+        '&[data-active]': {
+          position: 'relative',
+          opacity: 1,
+          color: 'initial',
+
+          ':after': {
+            content: "''",
+            position: 'absolute',
+            bottom: rem(8),
+            width: '2em',
+            height: rem(4),
+            backgroundColor: theme.colors[theme.primaryColor][6],
+            borderRadius: rem(2),
+          },
+        },
+      },
+    }),
+  },
+  Card: {
+    styles: (theme) => ({
+      root: {
+        padding: '0 !important',
+        borderRadius: rem(8),
+      },
+      cardSection: {
+        height: rem(40),
+        marginLeft: 0,
+        marginRight: 0,
+        paddingLeft: rem(12),
+        paddingRight: rem(12),
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        background: `linear-gradient(to right, ${theme.fn.rgba(
+          theme.colors[theme.primaryColor][6],
+          0.1
+        )} 0%, transparent 100%)`,
+
+        '&[data-first]': {
+          marginTop: 0,
+        },
+      },
+    }),
+  },
 } as MantineThemeOverride['components'];

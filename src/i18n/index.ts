@@ -4,7 +4,7 @@ import i18n from 'i18next';
 import en from './locales/en-US';
 import zh from './locales/zh-CN';
 
-export type I18nKeys = keyof typeof en;
+export type I18nKeys = keyof typeof zh;
 
 export enum Language {
   EN = 'en',
@@ -38,8 +38,8 @@ export const resources = {
 
 i18n.use(initReactI18next).init({
   resources,
-  lng: Language.EN,
-  fallbackLng: Language.EN,
+  lng: Language.ZH,
+  fallbackLng: Language.ZH,
   detection: {
     caches: ['localStorage'],
   },
