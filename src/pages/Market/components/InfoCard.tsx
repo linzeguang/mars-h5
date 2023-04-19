@@ -1,10 +1,48 @@
 import React from 'react';
 import { WithTranslation, withTranslation } from 'react-i18next';
+import { keyframes } from '@emotion/css';
 import styled from '@emotion/styled';
 import { Box, Button, Card, createStyles, Flex, Grid, rem } from '@mantine/core';
 
 import { ConvertSvgr, InfoSvgr, UpSvgr } from '@/components/Svgr';
 import { ThinText, WeightText } from '@/components/Uikit/Text';
+
+const fadeRight = keyframes`
+  0% {
+    transform: translateX(-10%);
+    opacity: 0;
+  }
+  25% {
+    transform: translateX(-5%);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+`;
+const fadeUp = keyframes`
+  0% {
+    transform: translateY(-10%);
+    opacity: 0;
+  }
+  25% {
+    transform: translateY(-5%);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+`;
 
 const useStyles = createStyles((theme) => ({
   grid: {
@@ -28,7 +66,7 @@ const useStyles = createStyles((theme) => ({
     fontSize: rem(10),
     borderBottom: `1px solid ${theme.colors.gray[6]}`,
 
-    '&[data-last]': {
+    '&[data-last = true]': {
       borderBottom: 'none',
     },
   },
@@ -42,6 +80,13 @@ const InfoIcon = styled(InfoSvgr)`
 const UpIcon = styled(UpSvgr)`
   width: ${rem(18)};
   height: ${rem(18)};
+  animation: ${fadeUp} 4000ms infinite linear;
+`;
+
+const ConvertIcon = styled(ConvertSvgr)`
+  width: ${rem(31)};
+  height: ${rem(24)};
+  animation: ${fadeRight} 4000ms infinite linear;
 `;
 
 const InfoCard: React.FC<Info & WithTranslation> = (props) => {
@@ -83,7 +128,7 @@ const InfoCard: React.FC<Info & WithTranslation> = (props) => {
         </Grid.Col>
         <Grid.Col span={2} className={classes.col}>
           <Flex h="100%" align="center" justify="center">
-            <ConvertSvgr width={rem(31)} height={rem(24)} />
+            <ConvertIcon />
           </Flex>
         </Grid.Col>
         <Grid.Col span={5} className={classes.col}>
