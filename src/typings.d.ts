@@ -21,6 +21,7 @@ declare module '@mantine/core' {
     pageSpacing: string;
     color: {
       main: string;
+      second: string;
     };
   }
 }

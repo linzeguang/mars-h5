@@ -28,6 +28,7 @@ const theme: MantineThemeOverride = {
     },
     color: {
       main: '#36455D',
+      second: '#5E718E',
     },
   },
 };

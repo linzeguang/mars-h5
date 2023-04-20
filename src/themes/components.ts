@@ -85,20 +85,20 @@ export default {
       },
     }),
   },
-  Tabs: {
-    styles: (theme) => ({
-      tabsList: {
-        border: 'none',
+  RadioGroup: {
+    styles: {
+      root: {
+        display: 'flex',
       },
-      tab: {
+    },
+  },
+  Radio: {
+    styles: (theme) => ({
+      root: {
         padding: `${rem(8)} ${rem(8)} ${rem(14)}`,
-        fontSize: rem(14),
-        lineHeight: theme.lineHeight,
-        color: theme.other.color.main,
-        border: 'none',
         opacity: 0.5,
 
-        '&[data-active]': {
+        '&[data-checked]': {
           position: 'relative',
           opacity: 1,
           color: 'initial',
@@ -106,13 +106,24 @@ export default {
           ':after': {
             content: "''",
             position: 'absolute',
+            left: '50%',
             bottom: rem(8),
+            transform: 'translateX(-50%)',
             width: '2em',
             height: rem(4),
             backgroundColor: theme.colors[theme.primaryColor][6],
             borderRadius: rem(2),
           },
         },
+      },
+      inner: {
+        display: 'none',
+      },
+      label: {
+        paddingLeft: 0,
+        fontSize: rem(14),
+        lineHeight: theme.lineHeight,
+        color: theme.other.color.main,
       },
     }),
   },
@@ -121,6 +132,7 @@ export default {
       root: {
         padding: '0 !important',
         borderRadius: rem(8),
+        border: '1px solid #F5F8FD',
       },
       cardSection: {
         height: rem(40),

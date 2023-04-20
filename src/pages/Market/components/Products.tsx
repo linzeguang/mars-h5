@@ -1,110 +1,58 @@
 import React, { useMemo } from 'react';
 import { WithTranslation, withTranslation } from 'react-i18next';
 import styled from '@emotion/styled';
-import { Flex, rem, Tabs } from '@mantine/core';
+import { Flex, Radio, rem, Stack } from '@mantine/core';
 import { useToggle } from '@mantine/hooks';
 
+import CommboInfo from '@/components/ComboInfo';
 import { SortSvgr } from '@/components/Svgr';
+import { defaultCommbo, MARKET_TYPE, SORT_BY } from '@/constants';
+import { MarketTab } from '@/types/market';
 
-import InfoCard, { Info } from './InfoCard';
-
-const Sort = styled(SortSvgr)<{ type: SortType }>(({ type }) => {
+const Sort = styled(SortSvgr)<{
+  sort: SORT_BY;
+}>(({ sort }) => {
   const baseStyle = {
     width: rem(24),
     height: rem(24),
   };
-  if (type === 'up') return { ...baseStyle, '#down': { opacity: 0.3 } };
+  if (sort === SORT_BY.UP) return { ...baseStyle, '#down': { opacity: 0.3 } };
   return { ...baseStyle, '#up': { opacity: 0.3 } };
 });
 
 const Products: React.FC<WithTranslation> = ({ t }) => {
-  const [sort, toggle] = useToggle<SortType>(['up', 'down']);
+  const [type, toggleType] = useToggle<MARKET_TYPE>([MARKET_TYPE.ALL, MARKET_TYPE.REC]);
+  const [sort, toggleSort] = useToggle<SORT_BY>([SORT_BY.UP, SORT_BY.DOWN]);
 
-  const tabs = useMemo<Tab[]>(
+  const tabs = useMemo<MarketTab[]>(
     () => [
       {
         name: t('all'),
-        value: 'all',
+        value: MARKET_TYPE.ALL,
       },
       {
         name: t('recommend'),
-        value: 'recommend',
+        value: MARKET_TYPE.REC,
       },
     ],
     [t]
   );
 
-  const Nodes = useMemo(() => {
-    const TabNodes: React.ReactNode[] = [];
-    const TabPanels: React.ReactNode[] = [];
-    const infos: Info[] = [
-      {
-        id: 1,
-        name: '嘻嘻',
-        period: 30,
-        earning: 3,
-        fromTokens: [
-          {
-            name: 'BTC',
-            rate: 30,
-          },
-          {
-            name: 'BNB',
-            rate: 60,
-          },
-          {
-            name: 'DOGE',
-            rate: 10,
-          },
-        ],
-        toTokens: [
-          {
-            name: 'MARS',
-            rate: 80,
-          },
-          {
-            name: 'ETH',
-            rate: 20,
-          },
-        ],
-        amount: 1000,
-      },
-    ];
-
-    tabs.forEach(({ name, value }) => {
-      TabNodes.push(
-        <Tabs.Tab key={value} value={value}>
-          {name}
-        </Tabs.Tab>
-      );
-      TabPanels.push(
-        <Tabs.Panel key={value} value={value} pt={rem(8)}>
-          {infos.map((info) => (
-            <InfoCard key={info.id} {...info} />
-          ))}
-        </Tabs.Panel>
-      );
-    });
-
-    return { TabNodes, TabPanels };
-  }, [tabs]);
-
   return (
-    <Tabs defaultValue="all">
+    <>
       <Flex align="center" justify="space-between">
-        <Tabs.List>{Nodes.TabNodes}</Tabs.List>
-        <Sort type={sort} onClick={() => toggle()} />
+        <Radio.Group value={type} onChange={(val: MARKET_TYPE) => toggleType(val)}>
+          {tabs.map(({ name, value }) => (
+            <Radio key={value} value={value} label={name} />
+          ))}
+        </Radio.Group>
+        <Sort sort={sort} onClick={() => toggleSort()} />
       </Flex>
-      {Nodes.TabPanels}
-    </Tabs>
+      <Stack>
+        <CommboInfo info={defaultCommbo} />
+      </Stack>
+    </>
   );
 };
 
 export default withTranslation()(Products);
-
-interface Tab {
-  name: string;
-  value: string;
-}
-
-type SortType = 'up' | 'down';

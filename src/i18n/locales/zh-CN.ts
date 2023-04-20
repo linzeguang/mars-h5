@@ -12,4 +12,8 @@ export default {
   'day.period': '{{day}}天期',
   period: '周期',
   daily: '/Day',
+  step: 'Step',
+  pay: 'Pay',
+  'order.number': '订单编号',
+  'wait.block.confirm': '等待区块确认',
 };
