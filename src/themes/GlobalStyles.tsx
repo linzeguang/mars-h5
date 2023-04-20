@@ -17,6 +17,10 @@ const GlobalStyles: React.FC = () => (
       '*': {
         boxSizing: 'border-box',
       },
+
+      '.w-affix': {
+        zIndex: 20,
+      },
     })}
   />
 );
