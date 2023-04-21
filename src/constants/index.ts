@@ -30,3 +30,13 @@ export const defaultCommbo: ComboInfo = {
     },
   ],
 };
+
+export const events = [
+  'resize',
+  'scroll',
+  'touchstart',
+  'touchmove',
+  'touchend',
+  'pageshow',
+  'load',
+];

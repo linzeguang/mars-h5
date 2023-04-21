@@ -1,21 +1,25 @@
-function flexible(window: Window, document: Document) {
-  const docEl = document.documentElement;
+const docEl = document.documentElement;
 
-  function setRemUnit() {
-    let rem: number;
+export function getRemUnit() {
+  let rem: number;
 
-    if (docEl.clientWidth < 320) rem = 12;
-    else if (docEl.clientWidth < 375) rem = 14;
-    else if (docEl.clientWidth < 390) rem = 16;
-    else if (docEl.clientWidth < 414) rem = 18;
-    else rem = 20;
+  if (docEl.clientWidth < 320) rem = 12;
+  else if (docEl.clientWidth < 375) rem = 14;
+  else if (docEl.clientWidth < 390) rem = 16;
+  else if (docEl.clientWidth < 414) rem = 18;
+  else rem = 20;
 
-    docEl.style.fontSize = `${rem}px`;
-  }
+  return `${rem}px`;
+}
 
+export function setRemUnit() {
+  const rem = getRemUnit();
+
+  docEl.style.fontSize = rem;
+}
+
+export function flexible(window: Window) {
   setRemUnit();
-
-  // reset rem unit on page resize
   window.addEventListener('resize', setRemUnit);
   window.addEventListener('pageshow', (e) => {
     if (e.persisted) {
@@ -23,5 +27,3 @@ function flexible(window: Window, document: Document) {
     }
   });
 }
-
-export default flexible;

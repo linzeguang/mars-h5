@@ -1,5 +1,7 @@
 import { DEFAULT_THEME, MantineThemeOverride, rem } from '@mantine/core';
 
+import { getRemUnit } from '@/utils/flexible';
+
 import components from './components';
 
 DEFAULT_THEME.colors.red.splice(6, 1, '#FC363B');
@@ -29,6 +31,25 @@ const theme: MantineThemeOverride = {
     color: {
       main: '#36455D',
       second: '#5E718E',
+    },
+    toPx: (value: unknown) => {
+      if (typeof value === 'number') {
+        return value;
+      }
+
+      if (typeof value === 'string') {
+        if (value.includes('px')) {
+          return Number(value.replace('px', ''));
+        }
+
+        if (value.includes('rem')) {
+          return Number(value.replace('rem', '')) * parseInt(getRemUnit(), 10);
+        }
+
+        return Number(value);
+      }
+
+      return NaN;
     },
   },
 };

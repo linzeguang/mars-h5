@@ -2,6 +2,8 @@ import React, { PropsWithChildren, useCallback, useEffect, useRef, useState } fr
 import styled from '@emotion/styled';
 import { useSetState } from '@mantine/hooks';
 
+import { events } from '@/constants';
+
 interface Props {
   top?: number;
   affixedStyles?: React.CSSProperties | Record<string, React.CSSProperties>;
@@ -35,17 +37,28 @@ export const Affix: React.FC<PropsWithChildren<Props>> = ({ children, top = 0, a
     const { scrollTop } = document.documentElement || document.body;
     const offsetTop = Number(grandFatherRef.current?.offsetTop);
 
-    console.log(offsetTop - scrollTop, top);
-    setAffixed(offsetTop - scrollTop <= top + 4);
+    setAffixed(offsetTop - scrollTop <= top);
   }, [top]);
 
+  const setEventListener = useCallback(() => {
+    events.forEach((eventName) => {
+      document.addEventListener(eventName, listener);
+    });
+  }, [listener]);
+
+  const removeEventListener = useCallback(() => {
+    events.forEach((eventName) => {
+      document.removeEventListener(eventName, listener);
+    });
+  }, [listener]);
+
   useEffect(() => {
-    document.addEventListener('scroll', listener);
+    setEventListener();
 
     return () => {
-      document.removeEventListener('scroll', listener);
+      removeEventListener();
     };
-  }, [listener]);
+  }, [listener, removeEventListener, setEventListener]);
 
   useEffect(() => {
     init();

@@ -23,6 +23,7 @@ declare module '@mantine/core' {
       main: string;
       second: string;
     };
+    toPx: (value: unknown) => number;
   }
 }
 

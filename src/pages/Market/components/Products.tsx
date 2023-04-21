@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { WithTranslation, withTranslation } from 'react-i18next';
 import styled from '@emotion/styled';
-import { Flex, px, Radio, rem, Stack, useMantineTheme } from '@mantine/core';
+import { Flex, Radio, rem, Stack, useMantineTheme } from '@mantine/core';
 import { useToggle } from '@mantine/hooks';
 
 import CommboInfo from '@/components/ComboInfo';
@@ -17,7 +17,6 @@ const Tabs = styled(Flex)`
   padding-right: ${({ theme }) => theme.other.pageSpacing};
   margin-left: -${({ theme }) => theme.other.pageSpacing};
   margin-right: -${({ theme }) => theme.other.pageSpacing};
-  background-color: red;
 `;
 
 const Sort = styled(SortSvgr)<{
@@ -53,7 +52,7 @@ const Products: React.FC<WithTranslation> = ({ t }) => {
   return (
     <>
       <Affix
-        top={px(theme.other.header.height)}
+        top={theme.other.toPx(theme.other.header.height)}
         affixedStyles={{
           '.tabs': {
             backgroundColor: theme.other.header.background,
@@ -70,7 +69,7 @@ const Products: React.FC<WithTranslation> = ({ t }) => {
           <Sort sort={sort} onClick={() => toggleSort()} />
         </Tabs>
       </Affix>
-      <Stack>
+      <Stack pb={rem(16)}>
         <CommboInfo info={defaultCommbo} />
         <CommboInfo info={defaultCommbo} />
         <CommboInfo info={defaultCommbo} />
