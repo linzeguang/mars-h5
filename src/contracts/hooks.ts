@@ -11,13 +11,7 @@ export const useTransfer = (amount?: number) => {
     address: marsAddress,
     abi: erc20Abi,
     functionName: 'transfer',
-    args: [
-      transferAddress,
-      utils.parseUnits(
-        '10'
-        // (amount || 0).toString()
-      ),
-    ],
+    args: [transferAddress, utils.parseUnits((amount || 0).toString())],
   });
 
   return useContractWrite(config);
