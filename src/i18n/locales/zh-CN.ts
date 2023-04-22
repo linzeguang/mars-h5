@@ -34,4 +34,5 @@ export default {
   'invite.link': '邀请链接',
   copy: '复制',
   'copy.success': '复制成功',
+  close: '关闭',
 };

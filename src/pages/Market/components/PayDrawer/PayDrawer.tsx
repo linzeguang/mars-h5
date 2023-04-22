@@ -54,7 +54,7 @@ const PayDrawerProvider: React.FC<PropsWithChildren & WithTranslation> = ({ chil
   const [prepayData, setPrepayData] = useState<PrepayData>();
   const [step, toggleStep] = useToggle([1, 2, 3]);
 
-  const { write: transfer } = useTransfer(prepayData?.pay_daibi_num);
+  const { writeAsync: transfer, isLoading } = useTransfer(prepayData?.pay_daibi_num);
 
   const fetchInfo = useCallback(async () => {
     if (!token || !comboInfo) return;
@@ -86,10 +86,15 @@ const PayDrawerProvider: React.FC<PropsWithChildren & WithTranslation> = ({ chil
     loadingHander.close();
   }, [comboInfo, loadingHander, toggleStep, token]);
 
-  const fetchTransfer = useCallback(async () => {
+  const fetchTransfer = useCallback(() => {
     if (!prepayData) return;
-    await transfer?.();
-    toggleStep(3);
+    transfer?.()
+      .then(() => {
+        toggleStep(3);
+      })
+      .catch((error) => {
+        toast.error(error.code);
+      });
   }, [prepayData, toggleStep, transfer]);
 
   const handlePay = useCallback(async () => {
@@ -99,7 +104,9 @@ const PayDrawerProvider: React.FC<PropsWithChildren & WithTranslation> = ({ chil
   }, [close, fetchPrepay, fetchTransfer, step]);
 
   useEffect(() => {
-    opened && fetchInfo();
+    if (opened) {
+      fetchInfo();
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [opened]);
 
@@ -162,8 +169,8 @@ const PayDrawerProvider: React.FC<PropsWithChildren & WithTranslation> = ({ chil
           </Box>
         )}
         <Space h="md" />
-        <Button onClick={handlePay} loading={loading}>
-          {t('pay')}
+        <Button onClick={handlePay} loading={loading || isLoading}>
+          {step === 3 ? t('close') : t('pay')}
         </Button>
       </Drawer>
     </PayContext.Provider>

@@ -1,7 +1,8 @@
 import BigNumber from 'bignumber.js';
 
 export const toFixed = (num?: BigNumber.Value) => {
-  if (typeof num === 'string' || num === undefined) return '**';
+  if (typeof num === 'string' || (num !== 0 && !num)) return '**';
+
   return new BigNumber(num).toFixed(2, 1);
 };
 
