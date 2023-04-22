@@ -27,4 +27,5 @@ export default {
   'invitation.address': '邀请地址',
   submit: '提交',
   'invitation.address.request': '请填写邀请地址',
+  amount: '金额',
 };

@@ -1,13 +1,17 @@
-import React, { useMemo } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { WithTranslation, withTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
+import { useModel } from 'foca';
 import styled from '@emotion/styled';
 import { Flex, Radio, rem, Stack, useMantineTheme } from '@mantine/core';
 import { useToggle } from '@mantine/hooks';
 
+import { api } from '@/apis';
 import { SortSvgr } from '@/components/Svgr';
 import { Affix } from '@/components/Uikit';
 import { defaultCommbo, MARKET_TYPE, SORT_BY } from '@/constants';
-import { MarketTab } from '@/types/market';
+import { appModel } from '@/models/appModel';
+import { ComboInfo, MarketTab } from '@/types/market';
 
 import InfoCard from './InfoCard';
 
@@ -33,8 +37,10 @@ const Sort = styled(SortSvgr)<{
 
 const Products: React.FC<WithTranslation> = ({ t }) => {
   const theme = useMantineTheme();
+  const { token } = useModel(appModel);
   const [type, toggleType] = useToggle<MARKET_TYPE>([MARKET_TYPE.ALL, MARKET_TYPE.REC]);
   const [sort, toggleSort] = useToggle<SORT_BY>([SORT_BY.UP, SORT_BY.DOWN]);
+  const [commboList, setCommboList] = useState<ComboInfo[]>([defaultCommbo]);
 
   const tabs = useMemo<MarketTab[]>(
     () => [
@@ -50,6 +56,21 @@ const Products: React.FC<WithTranslation> = ({ t }) => {
     [t]
   );
 
+  const fetchCommbos = useCallback(async () => {
+    if (!token) return setCommboList([defaultCommbo]);
+    try {
+      const { state, msg, list } = await api.combolist({ by: sort, type, token });
+      if (state !== 200) throw msg;
+      setCommboList(list);
+    } catch (error) {
+      toast.error(error as string);
+    }
+  }, [sort, token, type]);
+
+  useEffect(() => {
+    fetchCommbos();
+  }, [fetchCommbos]);
+
   return (
     <>
       <Affix
@@ -62,7 +83,10 @@ const Products: React.FC<WithTranslation> = ({ t }) => {
         }}
       >
         <Tabs className="tabs">
-          <Radio.Group value={type} onChange={(val: MARKET_TYPE) => toggleType(val)}>
+          <Radio.Group
+            value={type as unknown as string}
+            onChange={(val) => toggleType(val as unknown as MARKET_TYPE)}
+          >
             {tabs.map(({ name, value }) => (
               <Radio key={value} value={value} label={name} />
             ))}
@@ -71,11 +95,9 @@ const Products: React.FC<WithTranslation> = ({ t }) => {
         </Tabs>
       </Affix>
       <Stack pt={rem(8)} pb={rem(16)}>
-        <InfoCard info={defaultCommbo} />
-        <InfoCard info={defaultCommbo} />
-        <InfoCard info={defaultCommbo} />
-        <InfoCard info={defaultCommbo} />
-        <InfoCard info={defaultCommbo} />
+        {commboList.map((info) => (
+          <InfoCard key={info.combo_id} info={info} />
+        ))}
       </Stack>
     </>
   );

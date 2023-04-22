@@ -68,11 +68,11 @@ const useStyles = createStyles((theme) => ({
     paddingLeft: rem(8),
     paddingRight: rem(8),
     fontSize: rem(10),
-    borderBottom: `1px solid ${theme.colors.gray[6]}`,
+    // borderBottom: `1px solid ${theme.colors.gray[6]}`,
 
-    '&[data-last = true]': {
-      borderBottom: 'none',
-    },
+    // '&[data-last = true]': {
+    //   borderBottom: 'none',
+    // },
   },
 }));
 
@@ -97,7 +97,7 @@ const InfoCard: React.FC<{ inPay?: boolean; info: ComboInfo } & WithTranslation>
   const { t, i18n, info, inPay } = props;
   const { language } = i18n;
   const { combo_name, combo_name_en, combo_cycle, combo_income_lv, combo_price } = info;
-  const { fromTokens, toTokens } = info;
+  const { token_earn, token_in } = info;
 
   const { classes } = useStyles();
   const { setComboInfo, open } = usePayDrawer();
@@ -114,7 +114,7 @@ const InfoCard: React.FC<{ inPay?: boolean; info: ComboInfo } & WithTranslation>
         <Flex align="center" gap={rem(8)}>
           <InfoIcon />
           <WeightText size="md">{language === Language.EN ? combo_name_en : combo_name}</WeightText>
-          <WeightText size="md">{t('day.period', { day: combo_cycle })}</WeightText>
+          {/* <WeightText size="md">{t('day.period', { day: combo_cycle })}</WeightText> */}
         </Flex>
         <Flex align="center" gap={rem(8)}>
           <Flex align="center" gap={rem(4)}>
@@ -129,15 +129,7 @@ const InfoCard: React.FC<{ inPay?: boolean; info: ComboInfo } & WithTranslation>
       <Grid className={classes.grid} columns={16} gutter="0">
         <Grid.Col span={5} className={classes.col}>
           <ThinText className={classes.label}>Tokens</ThinText>
-          {fromTokens.map((token, index) => (
-            <WeightText
-              key={token.name}
-              className={classes.token}
-              data-last={fromTokens.length >= toTokens.length && index === fromTokens.length - 1}
-            >
-              {token.rate}% {token.name}
-            </WeightText>
-          ))}
+          <WeightText className={classes.token}>{token_in}</WeightText>
         </Grid.Col>
         <Grid.Col span={2} className={classes.col}>
           <Flex h="100%" align="center" justify="center">
@@ -146,15 +138,7 @@ const InfoCard: React.FC<{ inPay?: boolean; info: ComboInfo } & WithTranslation>
         </Grid.Col>
         <Grid.Col span={5} className={classes.col}>
           <ThinText className={classes.label}>Tokens</ThinText>
-          {toTokens.map((token, index) => (
-            <WeightText
-              key={token.name}
-              className={classes.token}
-              data-last={toTokens.length >= fromTokens.length && index === toTokens.length - 1}
-            >
-              {token.rate}% {token.name}
-            </WeightText>
-          ))}
+          <WeightText className={classes.token}>{token_earn}</WeightText>
         </Grid.Col>
         <Grid.Col
           span={4}

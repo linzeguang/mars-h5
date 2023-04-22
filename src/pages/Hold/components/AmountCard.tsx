@@ -4,6 +4,8 @@ import styled from '@emotion/styled';
 import { Flex, rem, Space, Stack, useMantineTheme } from '@mantine/core';
 
 import { ThinText, WeightText } from '@/components/Uikit';
+import { IncomeData } from '@/types/hold';
+import { toFixed } from '@/utils/format';
 
 const Card = styled.div`
   padding-top: ${rem(18)};
@@ -17,24 +19,24 @@ const Card = styled.div`
 
 // const;
 
-const AmountCard: React.FC<WithTranslation> = ({ t }) => {
+const AmountCard: React.FC<WithTranslation & { incomeData?: IncomeData }> = ({ t, incomeData }) => {
   const theme = useMantineTheme();
   const datas = useMemo(
     () => [
       {
         name: t('yesterday.earnings'),
-        value: 0.002,
+        value: toFixed(incomeData?.yest_income_usdt),
       },
       {
         name: t('yesterday.rewards'),
-        value: 0.001,
+        value: toFixed(incomeData?.combo_price_sum),
       },
       {
         name: t('total.earnings'),
-        value: 0.2,
+        value: toFixed(incomeData?.sum_income_usdt),
       },
     ],
-    [t]
+    [incomeData, t]
   );
 
   return (
@@ -45,7 +47,7 @@ const AmountCard: React.FC<WithTranslation> = ({ t }) => {
       <Space h={rem(4)} />
       <Flex align="baseline" justify="center">
         <WeightText size={rem(32)} color="#fff">
-          200000.0000
+          {incomeData?.sum_income_usdt}
         </WeightText>
         <WeightText size={rem(16)} color="#fff">
           U
@@ -72,7 +74,7 @@ const AmountCard: React.FC<WithTranslation> = ({ t }) => {
               {data.name}
             </ThinText>
             <WeightText size="sm" lh={2} color="#fff">
-              {data.value >= 0 ? '+' : '-'} {data.value} U
+              {Number(data.value) >= 0 ? '+' : '-'} {data.value} U
             </WeightText>
           </Stack>
         ))}

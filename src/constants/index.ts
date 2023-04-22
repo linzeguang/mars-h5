@@ -13,8 +13,8 @@ export enum SORT_BY {
 }
 
 export enum MARKET_TYPE {
-  ALL = '0', // 全部
-  REC = '1', // 推荐
+  ALL = 0, // 全部
+  REC = 1, // 推荐
 }
 
 export enum HELD_TYPE {
@@ -38,6 +38,13 @@ export const heldStatus = {
   [HELD_STATUS.EXPIRED]: 'expired',
 };
 
+export const heldStatusColor = {
+  [HELD_STATUS.WAITPAY]: '#FC363B',
+  [HELD_STATUS.CANCELLED]: 'rgba(54, 69, 93, 0.2)',
+  [HELD_STATUS.PROGRESSING]: '#37E271',
+  [HELD_STATUS.EXPIRED]: '#3767E2',
+};
+
 export const events = [
   'resize',
   'scroll',
@@ -55,18 +62,8 @@ export const defaultCommbo: ComboInfo = {
   combo_cycle: '--' as unknown as number,
   combo_price: '--' as unknown as number,
   combo_income_lv: '--',
-  fromTokens: [
-    {
-      name: '--',
-      rate: '--' as unknown as number,
-    },
-  ],
-  toTokens: [
-    {
-      name: '--',
-      rate: '--' as unknown as number,
-    },
-  ],
+  token_earn: 'Mars',
+  token_in: 'Mars',
 };
 
 export const defaultHeld: UsersCombo = {

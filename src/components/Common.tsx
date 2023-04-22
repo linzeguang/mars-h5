@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { Button, ButtonProps, createPolymorphicComponent, rem } from '@mantine/core';
 
-import { HELD_STATUS } from '@/constants';
+import { HELD_STATUS, heldStatusColor } from '@/constants';
 
 import { LogoSvgr } from './Svgr';
 
@@ -19,10 +19,16 @@ LogoWithText.defaultProps = {
   src: './logo.png',
 };
 
-export const HeldStatus = createPolymorphicComponent<'button', ButtonProps>(
+export const HeldStatus = createPolymorphicComponent<
+  'button',
+  ButtonProps & { status: HELD_STATUS }
+>(
   styled(Button)<{ status: HELD_STATUS }>`
-    width: ${rem(30)};
+    width: auto;
     height: ${rem(24)};
+    padding: 0 ${rem(10)};
+    font-size: ${rem(10)};
+    background-color: ${({ status }) => heldStatusColor[status]};
   `
 );
 

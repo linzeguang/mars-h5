@@ -11,7 +11,6 @@ export type IPromise<D = unknown> = {
   msg: string;
 } & D;
 
-export interface LoginParams {
-  address: string;
-  p_address?: string;
-}
+export type IList<T> = {
+  list: T[];
+};

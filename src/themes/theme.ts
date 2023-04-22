@@ -8,8 +8,6 @@ DEFAULT_THEME.colors.red.splice(6, 1, '#FC363B');
 DEFAULT_THEME.colors.gray.splice(6, 1, '#F5F8FD');
 DEFAULT_THEME.colors.gray.splice(4, 1, 'rgba(54, 69, 93, 0.08)');
 
-console.log('>>>>>> DEFAULT_THEME.colors.gray: ', DEFAULT_THEME.colors.gray);
-
 const theme: MantineThemeOverride = {
   fontSizes: { xs: rem(10), sm: rem(12), md: rem(14), lg: rem(16), xl: rem(18) },
   fontFamily: 'PingFang SC-Semibold, PingFang SC',

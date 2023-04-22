@@ -7,9 +7,9 @@ import { Button, Modal, rem, TextInput } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { useDisclosure } from '@mantine/hooks';
 
-import { LoginParams } from '@/apis/types';
 import { LOGIN_STATE } from '@/constants';
 import { appModel } from '@/models/appModel';
+import { LoginParams } from '@/types/user';
 
 type FormData = Required<Pick<LoginParams, 'p_address'>>;
 

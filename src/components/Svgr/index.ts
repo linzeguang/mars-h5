@@ -8,6 +8,7 @@ export { ReactComponent as HoldSvgr } from './hold.svg';
 export { ReactComponent as InfoSvgr } from './info.svg';
 export { ReactComponent as LogoSvgr } from './logo.svg';
 export { ReactComponent as MarketSvgr } from './market.svg';
+export { ReactComponent as MoreSvgr } from './more.svg';
 export { ReactComponent as SortSvgr } from './sort.svg';
 export { ReactComponent as UpSvgr } from './up.svg';
 export { ReactComponent as UserSvgr } from './user.svg';

@@ -2,8 +2,8 @@
 import { defineModel } from 'foca';
 
 import { api } from '@/apis';
-import { LoginParams } from '@/apis/types';
 import { LOGIN_STATE } from '@/constants';
+import { LoginParams } from '@/types/user';
 
 export interface AppState {
   token?: string;

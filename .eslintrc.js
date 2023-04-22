@@ -29,6 +29,7 @@ module.exports = {
     },
   ],
   rules: {
+    'consistent-return': 'off',
     'simple-import-sort/imports': 'error',
     'simple-import-sort/exports': 'error',
     'import/extensions': 'off',
@@ -42,5 +43,6 @@ module.exports = {
     'react/no-unknown-property': ['error', { ignore: ['css'] }],
     'react/no-unused-prop-types': 'off',
     'react/react-in-jsx-scope': 'off',
+    '@typescript-eslint/no-throw-literal': 'off',
   },
 };

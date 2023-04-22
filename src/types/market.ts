@@ -8,6 +8,7 @@ export interface MarketTab {
 export interface MarketParams {
   by: SORT_BY;
   type: MARKET_TYPE;
+  token: string;
 }
 
 export interface ComboInfo {
@@ -17,11 +18,17 @@ export interface ComboInfo {
   combo_cycle: number;
   combo_price: number;
   combo_income_lv: string;
-  fromTokens: ComboToken[];
-  toTokens: ComboToken[];
+  token_earn: string;
+  token_in: string;
 }
 
-export interface ComboToken {
-  name: string;
-  rate: number;
+export interface PrepayParams {
+  combo_id: number;
+  token: string;
+}
+
+export interface PrepayData {
+  orderno: string;
+  pay_price_daibi: string;
+  pay_daibi_num: number;
 }

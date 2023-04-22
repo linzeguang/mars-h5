@@ -1,12 +1,17 @@
-import React, { PropsWithChildren, useCallback, useState } from 'react';
+import React, { PropsWithChildren, useCallback, useEffect, useState } from 'react';
 import { WithTranslation, withTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
+import { useModel } from 'foca';
 import styled from '@emotion/styled';
 import { Box, Button, Card, createStyles, Drawer, Flex, rem, Space } from '@mantine/core';
 import { useDisclosure, useToggle } from '@mantine/hooks';
 
+import { api } from '@/apis';
 import { CheckCircleSvgr } from '@/components/Svgr';
 import { WeightText } from '@/components/Uikit';
-import { ComboInfo } from '@/types/market';
+import { useTransfer } from '@/contracts/hooks';
+import { appModel } from '@/models/appModel';
+import { ComboInfo, PrepayData } from '@/types/market';
 
 import InfoCard from '../InfoCard';
 
@@ -42,15 +47,61 @@ const CheckIcon = styled(CheckCircleSvgr)`
 
 const PayDrawerProvider: React.FC<PropsWithChildren & WithTranslation> = ({ children, t }) => {
   const { classes } = useStyles();
+  const { token } = useModel(appModel);
   const [opened, { close, open, toggle }] = useDisclosure(false);
+  const [loading, loadingHander] = useDisclosure(false);
   const [comboInfo, setComboInfo] = useState<ComboInfo>();
+  const [prepayData, setPrepayData] = useState<PrepayData>();
   const [step, toggleStep] = useToggle([1, 2, 3]);
 
-  const handlePay = useCallback(() => {
-    if (step === 1) return toggleStep(2);
-    if (step === 2) return toggleStep(3);
-    return toggleStep(1);
-  }, [step, toggleStep]);
+  const { write: transfer } = useTransfer(prepayData?.pay_daibi_num);
+
+  const fetchInfo = useCallback(async () => {
+    if (!token || !comboInfo) return;
+    try {
+      loadingHander.open();
+      const { state, list, msg } = await api.comboinfo({ combo_id: comboInfo.combo_id, token });
+      if (state !== 200) throw msg;
+      setComboInfo(list);
+    } catch (error) {
+      toast.error(error as string);
+    }
+    loadingHander.close();
+  }, [comboInfo, loadingHander, token]);
+
+  const fetchPrepay = useCallback(async () => {
+    if (!token || !comboInfo) return;
+    loadingHander.open();
+    try {
+      const { state, msg, orderno, pay_daibi_num, pay_price_daibi } = await api.prepay({
+        combo_id: comboInfo.combo_id,
+        token,
+      });
+      if (state !== 200) throw msg;
+      setPrepayData({ orderno, pay_daibi_num, pay_price_daibi });
+      toggleStep(2);
+    } catch (error) {
+      toast.error(error as string);
+    }
+    loadingHander.close();
+  }, [comboInfo, loadingHander, toggleStep, token]);
+
+  const fetchTransfer = useCallback(async () => {
+    if (!prepayData) return;
+    await transfer?.();
+    toggleStep(3);
+  }, [prepayData, toggleStep, transfer]);
+
+  const handlePay = useCallback(async () => {
+    if (step === 1) return fetchPrepay();
+    if (step === 2) return fetchTransfer();
+    return close();
+  }, [close, fetchPrepay, fetchTransfer, step]);
+
+  useEffect(() => {
+    opened && fetchInfo();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [opened]);
 
   return (
     <PayContext.Provider value={{ opened, close, open, toggle, setComboInfo }}>
@@ -83,21 +134,21 @@ const PayDrawerProvider: React.FC<PropsWithChildren & WithTranslation> = ({ chil
         {step !== 1 && (
           <Box>
             <WeightText size="sm" pl={rem(8)} opacity={0.8}>
-              {t('order.number')}: --
+              {t('order.number')}: {prepayData?.orderno}
             </WeightText>
             <Space h="md" />
             {step === 2 ? (
               <Card>
                 <Flex>
                   <WeightText className={classes.info} align="center">
-                    Mars/USDT
+                    {comboInfo?.token_in}/USDT
                   </WeightText>
                   <WeightText className={classes.info} align="center">
-                    0.05
+                    {prepayData?.pay_price_daibi}
                   </WeightText>
                 </Flex>
                 <WeightText color="red" align="center" lh={4}>
-                  800 Mars
+                  {prepayData?.pay_daibi_num} {comboInfo?.token_in}
                 </WeightText>
               </Card>
             ) : (
@@ -111,7 +162,9 @@ const PayDrawerProvider: React.FC<PropsWithChildren & WithTranslation> = ({ chil
           </Box>
         )}
         <Space h="md" />
-        <Button onClick={handlePay}>{t('pay')}</Button>
+        <Button onClick={handlePay} loading={loading}>
+          {t('pay')}
+        </Button>
       </Drawer>
     </PayContext.Provider>
   );
