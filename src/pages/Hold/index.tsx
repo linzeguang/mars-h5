@@ -1,5 +1,13 @@
 import React from 'react';
 
-const Hold: React.FC = () => <div>index</div>;
+import AmountCard from './components/AmountCard';
+import Helds from './components/Helds';
+
+const Hold: React.FC = () => (
+  <>
+    <AmountCard />
+    <Helds />
+  </>
+);
 
 export default Hold;

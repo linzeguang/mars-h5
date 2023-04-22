@@ -25,4 +25,13 @@ export default defineConfig({
       '@': path.join(__dirname, 'src'),
     },
   },
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://8.219.8.4:1005/index',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ''),
+      },
+    },
+  },
 });

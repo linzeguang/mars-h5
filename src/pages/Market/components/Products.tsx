@@ -4,11 +4,12 @@ import styled from '@emotion/styled';
 import { Flex, Radio, rem, Stack, useMantineTheme } from '@mantine/core';
 import { useToggle } from '@mantine/hooks';
 
-import CommboInfo from '@/components/ComboInfo';
 import { SortSvgr } from '@/components/Svgr';
 import { Affix } from '@/components/Uikit';
 import { defaultCommbo, MARKET_TYPE, SORT_BY } from '@/constants';
 import { MarketTab } from '@/types/market';
+
+import InfoCard from './InfoCard';
 
 const Tabs = styled(Flex)`
   align-items: center;
@@ -69,12 +70,12 @@ const Products: React.FC<WithTranslation> = ({ t }) => {
           <Sort sort={sort} onClick={() => toggleSort()} />
         </Tabs>
       </Affix>
-      <Stack pb={rem(16)}>
-        <CommboInfo info={defaultCommbo} />
-        <CommboInfo info={defaultCommbo} />
-        <CommboInfo info={defaultCommbo} />
-        <CommboInfo info={defaultCommbo} />
-        <CommboInfo info={defaultCommbo} />
+      <Stack pt={rem(8)} pb={rem(16)}>
+        <InfoCard info={defaultCommbo} />
+        <InfoCard info={defaultCommbo} />
+        <InfoCard info={defaultCommbo} />
+        <InfoCard info={defaultCommbo} />
+        <InfoCard info={defaultCommbo} />
       </Stack>
     </>
   );

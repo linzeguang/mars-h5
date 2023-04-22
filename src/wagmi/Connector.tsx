@@ -24,7 +24,7 @@ const Connector: React.FC<WithTranslation> = ({ t }) => {
           sx={isConnected ? { backgroundColor: theme.other.color.main } : undefined}
           onClick={() => handleConnect(connector)}
         >
-          {isConnecting ? t('connecting') : isConnected ? address : t('connect.wallet')}
+          {isConnecting ? t('connecting') : address || t('connect.wallet')}
         </Button>
       ))}
     </Stack>

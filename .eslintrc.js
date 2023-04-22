@@ -33,6 +33,7 @@ module.exports = {
     'simple-import-sort/exports': 'error',
     'import/extensions': 'off',
     'import/no-cycle': 'off',
+    'no-param-reassign': 'off',
     'no-restricted-exports': 'off',
     // 'react-hooks/exhaustive-deps': 'warn',
     'react-hooks/rules-of-hooks': 'error',

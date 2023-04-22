@@ -1,4 +1,6 @@
 import './i18n';
+import './store';
+import 'react-toastify/dist/ReactToastify.css';
 
 import ReactDOM from 'react-dom/client';
 

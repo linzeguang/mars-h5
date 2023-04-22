@@ -4,11 +4,11 @@ import styled from '@emotion/styled';
 import { Box, Button, Card, createStyles, Drawer, Flex, rem, Space } from '@mantine/core';
 import { useDisclosure, useToggle } from '@mantine/hooks';
 
+import { CheckCircleSvgr } from '@/components/Svgr';
+import { WeightText } from '@/components/Uikit';
 import { ComboInfo } from '@/types/market';
 
-import CommboInfo from '../ComboInfo';
-import { CheckCircleSvgr } from '../Svgr';
-import { WeightText } from '../Uikit/Text';
+import InfoCard from '../InfoCard';
 
 import { PayContext } from './context';
 
@@ -79,7 +79,7 @@ const PayDrawerProvider: React.FC<PropsWithChildren & WithTranslation> = ({ chil
           </Button.Group>
         }
       >
-        {comboInfo && step === 1 && <CommboInfo inPay info={comboInfo} />}
+        {comboInfo && step === 1 && <InfoCard inPay info={comboInfo} />}
         {step !== 1 && (
           <Box>
             <WeightText size="sm" pl={rem(8)} opacity={0.8}>

@@ -1,9 +1,8 @@
 import React from 'react';
 import { Image, Space } from '@mantine/core';
 
-import PayDrawerProvider from '@/components/PayDrawer';
-
 import MoreFeatures from './components/MoreFeatures';
+import PayDrawerProvider from './components/PayDrawer';
 import Products from './components/Products';
 
 const Markets: React.FC = () => (
