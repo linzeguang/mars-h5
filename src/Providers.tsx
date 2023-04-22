@@ -13,11 +13,12 @@ const Providers: React.FC<PropsWithChildren> = ({ children }) => (
       <ThemeProvider>
         <ToastContainer
           position="top-center"
-          autoClose={2500}
+          // autoClose={2500}
           theme="colored"
           draggable
           closeOnClick
           hideProgressBar
+          closeButton={false}
         />
         <InvitationModal />
         {children}

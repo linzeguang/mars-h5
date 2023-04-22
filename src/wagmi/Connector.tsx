@@ -3,6 +3,8 @@ import { WithTranslation, withTranslation } from 'react-i18next';
 import { useAccount, useConnect } from 'wagmi';
 import { Button, Stack, useMantineTheme } from '@mantine/core';
 
+import { desensitize } from '@/utils/format';
+
 const Connector: React.FC<WithTranslation> = ({ t }) => {
   const theme = useMantineTheme();
   const { connect, connectors } = useConnect();
@@ -24,7 +26,7 @@ const Connector: React.FC<WithTranslation> = ({ t }) => {
           sx={isConnected ? { backgroundColor: theme.other.color.main } : undefined}
           onClick={() => handleConnect(connector)}
         >
-          {isConnecting ? t('connecting') : address || t('connect.wallet')}
+          {isConnecting ? t('connecting') : desensitize(address) || t('connect.wallet')}
         </Button>
       ))}
     </Stack>

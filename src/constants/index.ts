@@ -25,6 +25,7 @@ export enum HELD_TYPE {
 }
 
 export enum HELD_STATUS {
+  TEM = 0,
   WAITPAY = 1, // 待支付
   CANCELLED = 2, // 已取消
   PROGRESSING = 3, // 进行中
@@ -32,6 +33,7 @@ export enum HELD_STATUS {
 }
 
 export const heldStatus = {
+  [HELD_STATUS.TEM]: '**',
   [HELD_STATUS.WAITPAY]: 'waitpay',
   [HELD_STATUS.CANCELLED]: 'cancelled',
   [HELD_STATUS.PROGRESSING]: 'progressing',
@@ -39,6 +41,7 @@ export const heldStatus = {
 };
 
 export const heldStatusColor = {
+  [HELD_STATUS.TEM]: '#fff',
   [HELD_STATUS.WAITPAY]: '#FC363B',
   [HELD_STATUS.CANCELLED]: 'rgba(54, 69, 93, 0.2)',
   [HELD_STATUS.PROGRESSING]: '#37E271',
@@ -57,24 +60,31 @@ export const events = [
 
 export const defaultCommbo: ComboInfo = {
   combo_id: 0,
-  combo_name: '--',
-  combo_name_en: '--',
-  combo_cycle: '--' as unknown as number,
-  combo_price: '--' as unknown as number,
-  combo_income_lv: '--',
-  token_earn: 'Mars',
-  token_in: 'Mars',
+  combo_name: '**',
+  combo_name_en: '**',
+  combo_cycle: '**' as unknown as number,
+  combo_price: '**' as unknown as number,
+  combo_income_lv: '**',
+  token_earn: 'MARS',
+  token_in: 'MARS',
 };
 
 export const defaultHeld: UsersCombo = {
-  users_combo_id: 18,
-  combo_price: 1,
-  pay_daibi_num: '205642.83951633',
-  combo_income_usdt: '0.00000000',
-  combo_income_benbi: '0.00000000',
-  combo_name: 'Mars理财1',
-  combo_name_en: 'Mars-1',
-  yest_income_usdt: 0,
-  yest_income_benbi: 0,
-  order_status: 3,
+  users_combo_id: '**' as unknown as number,
+  combo_price: '**' as unknown as number,
+  pay_daibi_num: '**',
+  combo_income_usdt: '**',
+  combo_income_benbi: '**',
+  combo_name: '**',
+  combo_name_en: '**',
+  yest_income_usdt: '**' as unknown as number,
+  yest_income_benbi: '**' as unknown as number,
+  order_status: 0,
 };
+
+export const inviteQueryKey = 'inviteToken';
+
+export enum INVITE_TYPE {
+  TEAM,
+  TUIJIAN,
+}

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Global } from '@emotion/react';
+import { rem } from '@mantine/core';
 
 const GlobalStyles: React.FC = () => (
   <Global
@@ -20,6 +21,12 @@ const GlobalStyles: React.FC = () => (
 
       '.w-affix': {
         zIndex: 20,
+      },
+
+      '.Toastify__toast-body': {
+        fontFamily: 'PingFang SC-Regular, PingFang SC',
+        fontWeight: 400,
+        fontSize: rem(14),
       },
     })}
   />

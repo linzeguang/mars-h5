@@ -80,7 +80,7 @@ const HeldInfo: React.FC<WithTranslation & { info: UsersCombo }> = ({ t, i18n, i
             <ThinText className={classes.leftLabel}>{t('amount')}</ThinText>
             <Box className={classes.leftValues}>
               <WeightText className={classes.usdtAmount}>{toFixed(combo_price)} U</WeightText>
-              <ThinText className={classes.marsAmount}>≈ {toFixed(pay_daibi_num)} Mars</ThinText>
+              <ThinText className={classes.marsAmount}>≈ {toFixed(pay_daibi_num)} MARS</ThinText>
             </Box>
           </Grid.Col>
           <Grid.Col span={4} className={classes.leftCenter}>
@@ -88,7 +88,7 @@ const HeldInfo: React.FC<WithTranslation & { info: UsersCombo }> = ({ t, i18n, i
             <Box className={classes.leftValues}>
               <WeightText className={classes.usdtAmount}>{toFixed(yest_income_usdt)} U</WeightText>
               <ThinText className={classes.marsAmount}>
-                ≈ {toFixed(yest_income_benbi)} Mars
+                ≈ {toFixed(yest_income_benbi)} MARS
               </ThinText>
             </Box>
           </Grid.Col>
@@ -97,7 +97,7 @@ const HeldInfo: React.FC<WithTranslation & { info: UsersCombo }> = ({ t, i18n, i
             <Box className={classes.leftValues}>
               <WeightText className={classes.usdtAmount}>{toFixed(combo_income_usdt)} U</WeightText>
               <ThinText className={classes.marsAmount}>
-                ≈ {toFixed(combo_income_benbi)} Mars
+                ≈ {toFixed(combo_income_benbi)} MARS
               </ThinText>
             </Box>
           </Grid.Col>

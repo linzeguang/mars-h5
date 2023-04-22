@@ -1,5 +1,5 @@
 import React, { ReactNode, Suspense } from 'react';
-import { HashRouter, Navigate, Route, Routes } from 'react-router-dom';
+import { HashRouter, Route, Routes } from 'react-router-dom';
 
 import Layout from './layout';
 
@@ -15,8 +15,7 @@ const App: React.FC = () => (
   <HashRouter>
     <Routes>
       <Route element={<Layout />}>
-        <Route index element={<Navigate to="market" replace />} />
-        <Route path="market" element={lazyload(<Market />)} />
+        <Route path="/" element={lazyload(<Market />)} />
         <Route path="check-in" element={lazyload(<CheckIn />)} />
         <Route path="answer" element={lazyload(<Answer />)} />
         <Route path="hold" element={lazyload(<Hold />)} />

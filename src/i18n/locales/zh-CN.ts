@@ -28,4 +28,10 @@ export default {
   submit: '提交',
   'invitation.address.request': '请填写邀请地址',
   amount: '金额',
+  balance: '余额',
+  withdraw: '提现',
+  contribution: '贡献者',
+  'invite.link': '邀请链接',
+  copy: '复制',
+  'copy.success': '复制成功',
 };

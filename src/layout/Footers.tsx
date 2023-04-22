@@ -36,7 +36,7 @@ const Footers: React.FC<WithTranslation & RouterType> = ({ t, pathname }) => {
       {
         name: t('market'),
         Icon: MarketSvgr,
-        href: '/market',
+        href: '/',
       },
       {
         name: t('hold'),

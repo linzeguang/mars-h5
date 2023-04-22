@@ -4,7 +4,7 @@ import { useModel } from 'foca';
 import { useToggle } from '@mantine/hooks';
 
 import { api } from '@/apis';
-import { HELD_TYPE } from '@/constants';
+import { defaultHeld, HELD_TYPE } from '@/constants';
 import { appModel } from '@/models/appModel';
 import { IncomeData, IncomeNum, UsersCombo } from '@/types/hold';
 
@@ -19,12 +19,12 @@ const Hold: React.FC = () => {
     HELD_TYPE.WAITPAY,
     HELD_TYPE.EXPIRED,
   ]);
-  const [commboList, setCommboList] = useState<UsersCombo[]>([]);
+  const [commboList, setCommboList] = useState<UsersCombo[]>([defaultHeld]);
   const [incomeNum, setIncomeNum] = useState<IncomeNum>();
   const [incomeData, setIncomeData] = useState<IncomeData>();
 
   const fetchCombos = useCallback(async () => {
-    if (!token) return;
+    if (!token) return setCommboList([defaultHeld]);
 
     try {
       const { state, msg, users_combo, income_num, income_data } = await api.userscombolist({

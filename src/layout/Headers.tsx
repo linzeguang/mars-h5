@@ -1,4 +1,5 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
+import { useAccount } from 'wagmi';
 import { Box, Burger, Header, Modal, rem, Space, useMantineTheme } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 
@@ -8,7 +9,13 @@ import { ChainSelector, Connector } from '@/wagmi';
 
 const Headers: React.FC = () => {
   const { header, color } = useMantineTheme().other;
-  const [opened, { toggle }] = useDisclosure(false);
+  const { address } = useAccount();
+  const [opened, { toggle, open }] = useDisclosure(false);
+
+  useEffect(() => {
+    !address && open();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <Fragment>

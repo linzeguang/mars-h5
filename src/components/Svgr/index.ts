@@ -10,5 +10,8 @@ export { ReactComponent as LogoSvgr } from './logo.svg';
 export { ReactComponent as MarketSvgr } from './market.svg';
 export { ReactComponent as MoreSvgr } from './more.svg';
 export { ReactComponent as SortSvgr } from './sort.svg';
+export { ReactComponent as TeamSvgr } from './team.svg';
+export { ReactComponent as TuijianSvgr } from './tuijian.svg';
 export { ReactComponent as UpSvgr } from './up.svg';
 export { ReactComponent as UserSvgr } from './user.svg';
+export { ReactComponent as WithdrawSvgr } from './withdraw.svg';

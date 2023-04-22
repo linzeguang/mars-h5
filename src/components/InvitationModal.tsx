@@ -22,12 +22,14 @@ const AddressInput = styled(TextInput)`
 
 const InvitationModal: React.FC<WithTranslation> = ({ t }) => {
   const { address } = useAccount();
-  const { loginState } = useModel(appModel);
+  const { loginState, inviteToken } = useModel(appModel);
   const loading = useLoading(appModel.fetchLogin);
   const [opened, { open, close }] = useDisclosure(false);
+
+  // const
   const form = useForm<FormData>({
     initialValues: {
-      p_address: '',
+      p_address: inviteToken || '',
     },
     validate: {
       p_address: (value) => (value.trim() ? null : t('invitation.address.request')),
