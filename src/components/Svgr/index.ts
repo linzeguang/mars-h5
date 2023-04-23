@@ -6,7 +6,6 @@ export { ReactComponent as CheckInSvgr } from './check-in.svg';
 export { ReactComponent as ConvertSvgr } from './convert.svg';
 export { ReactComponent as HoldSvgr } from './hold.svg';
 export { ReactComponent as InfoSvgr } from './info.svg';
-export { ReactComponent as LogoSvgr } from './logo.svg';
 export { ReactComponent as MarketSvgr } from './market.svg';
 export { ReactComponent as MoreSvgr } from './more.svg';
 export { ReactComponent as SortSvgr } from './sort.svg';

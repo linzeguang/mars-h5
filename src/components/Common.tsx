@@ -3,11 +3,15 @@ import { Button, ButtonProps, createPolymorphicComponent, rem } from '@mantine/c
 
 import { HELD_STATUS, heldStatusColor } from '@/constants';
 
-import { LogoSvgr } from './Svgr';
-
-export const Logo = styled(LogoSvgr)`
+export const Logo = styled.img`
+  width: ${rem(33)};
   height: ${rem(40)};
 `;
+
+Logo.defaultProps = {
+  src: './logo-real.png',
+  alt: 'mars',
+};
 
 export const LogoWithText = styled.img`
   display: block;
