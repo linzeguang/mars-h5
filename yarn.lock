@@ -3481,7 +3481,7 @@ convert-source-map@^2.0.0:
   resolved "https://registry.npmmirror.com/convert-source-map/-/convert-source-map-2.0.0.tgz#4b560f649fc4e918dd0ab75cf4961e8bc882d82a"
   integrity sha512-Kvp459HrV2FEJ1CAsi1Ku+MY3kasH19TFykTz2xWmMeq6bk2NU3XXvfJ+Q61m0xktWwt+1HSYf3JZsTms3aRJg==
 
-copy-to-clipboard@^3.3.3:
+copy-to-clipboard@^3.3.1, copy-to-clipboard@^3.3.3:
   version "3.3.3"
   resolved "https://registry.npmmirror.com/copy-to-clipboard/-/copy-to-clipboard-3.3.3.tgz#55ac43a1db8ae639a4bd99511c148cdd1b83a1b0"
   integrity sha512-2KV8NhB5JqC3ky0r9PMCAZKbUHSwtEo4CwCs0KXgruG43gX5PMqDEBbVU4OUzw2MuAWUfsuFmWvEKG5QRfSnJA==
@@ -6788,6 +6788,13 @@ react-toastify@^9.1.2:
   integrity sha512-PBfzXO5jMGEtdYR5jxrORlNZZe/EuOkwvwKijMatsZZm8IZwLj01YvobeJYNjFcA6uy6CVrx2fzL9GWbhWPTDA==
   dependencies:
     clsx "^1.1.1"
+
+react-use-clipboard@^1.0.9:
+  version "1.0.9"
+  resolved "https://registry.npmmirror.com/react-use-clipboard/-/react-use-clipboard-1.0.9.tgz#d34d4d04500f77c606795d3756fc587ec93db8d2"
+  integrity sha512-OcMzc14usXhqQnAkvzmhCXAbW5WBT2LSgscVh2vKHXZfg72jFsSOsEearqdeC/nUj8YxEfLnziqe7AE7YkWFwA==
+  dependencies:
+    copy-to-clipboard "^3.3.1"
 
 react@^18.2.0:
   version "18.2.0"

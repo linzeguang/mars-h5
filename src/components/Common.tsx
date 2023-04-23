@@ -1,7 +1,9 @@
 import styled from '@emotion/styled';
-import { Button, ButtonProps, createPolymorphicComponent, rem } from '@mantine/core';
+import { createPolymorphicComponent, rem, TextProps } from '@mantine/core';
 
 import { HELD_STATUS, heldStatusColor } from '@/constants';
+
+import { WeightText } from './Uikit';
 
 export const Logo = styled.img`
   width: ${rem(33)};
@@ -23,20 +25,17 @@ LogoWithText.defaultProps = {
   src: './logo.png',
 };
 
-export const HeldStatus = createPolymorphicComponent<
-  'button',
-  ButtonProps & { status: HELD_STATUS }
->(
-  styled(Button)<{ status: HELD_STATUS }>`
+export const HeldStatus = createPolymorphicComponent<'div', TextProps & { status: HELD_STATUS }>(
+  styled(WeightText)<{ status: HELD_STATUS }>`
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: auto;
     height: ${rem(24)};
     padding: 0 ${rem(10)};
     font-size: ${rem(10)};
+    color: #fff;
+    border-radius: ${rem(8)};
     background-color: ${({ status }) => heldStatusColor[status]};
   `
 );
-
-HeldStatus.defaultProps = {
-  variant: 'filled',
-  size: 'xs',
-};
