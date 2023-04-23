@@ -32,7 +32,7 @@ const AmountCard: React.FC<WithTranslation & { incomeData?: IncomeData }> = ({ t
       },
       {
         name: t('yesterday.rewards'),
-        value: toFixed(incomeData?.combo_price_sum),
+        value: toFixed(incomeData?.yest_jiang_income_usdt),
       },
       {
         name: t('total.earnings'),
@@ -50,7 +50,7 @@ const AmountCard: React.FC<WithTranslation & { incomeData?: IncomeData }> = ({ t
       <Space h={rem(4)} />
       <Flex align="baseline" justify="center">
         <WeightText size={rem(32)} color="#fff">
-          {incomeData?.sum_income_usdt || '**'}
+          {toFixed(incomeData?.sum_income_usdt)}
         </WeightText>
         <WeightText size={rem(20)} color="#fff">
           &nbsp;U

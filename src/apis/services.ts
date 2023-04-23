@@ -18,7 +18,7 @@ export class Services {
 
   constructor(config?: CreateAxiosDefaults) {
     this.axios = axios.create({
-      baseURL: '/api',
+      baseURL: import.meta.env.VITE_BASE_URL,
       timeout: 30 * 1000, // 超时时间：30s
       headers: {
         'Content-Type': 'application/json;charset=UTF-8',

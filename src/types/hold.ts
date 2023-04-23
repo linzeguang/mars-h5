@@ -9,6 +9,7 @@ export interface IncomeData {
   combo_price_sum: number; // 总持有U数量
   yest_income_usdt: number; // 昨日总收益U
   sum_income_usdt: number; // 累计收益U
+  yest_jiang_income_usdt: number; // 昨日奖励
 }
 
 export interface IncomeNum {

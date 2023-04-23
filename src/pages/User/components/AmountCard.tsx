@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect } from 'react';
 import { WithTranslation, withTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
-import { utils } from 'ethers';
 import { useModel } from 'foca';
 import styled from '@emotion/styled';
 import { Button, Flex, rem, Space } from '@mantine/core';
@@ -39,14 +38,7 @@ const AmountCard: React.FC<WithTranslation> = ({ t }) => {
       if (state !== 200) throw msg;
       const { addr, contract_addr, time, order_no, amount, data } = withdrawData;
       await withdraw?.({
-        recklesslySetUnpreparedArgs: [
-          addr,
-          contract_addr,
-          time,
-          order_no,
-          utils.parseUnits(amount),
-          data,
-        ],
+        recklesslySetUnpreparedArgs: [addr, contract_addr, time, order_no, amount, data],
       });
     } catch (error: any) {
       toast.error(error.message || error.code || error);
