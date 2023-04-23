@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.1-1](https://github.com/linzeguang/mars-h5/compare/v0.0.1-0...v0.0.1-1) (2023-04-23)
+
+
+### Bug Fixes
+
+* 修改邀请token键 ([fb7daed](https://github.com/linzeguang/mars-h5/commit/fb7daed03b00ebcb722e7226630d1fd247da94cb))
+
 ### 0.0.1-0 (2023-04-23)
 
 
