@@ -1,6 +1,6 @@
 import { IncomeData, IncomeNum, UserCommbosParams, UsersCombo } from '@/types/hold';
 import { ComboInfo, MarketParams, PrepayData, PrepayParams } from '@/types/market';
-import { Balance, InviteNum, LoginParams, TeamData, UserParams } from '@/types/user';
+import { Balance, InviteNum, LoginParams, TeamData, UserParams, Withdraw } from '@/types/user';
 
 import services from './services';
 import { IList } from './types';
@@ -39,7 +39,13 @@ export const teamdata = (params: UserParams) =>
   services.post<IList<TeamData>>('/index/teamdata', {
     ...params,
   });
+
 export const tuijian = (params: UserParams) =>
   services.post<IList<TeamData>>('/index/tuijian', {
+    ...params,
+  });
+
+export const withdraw = (params: UserParams) =>
+  services.post<{ data: Withdraw }>('/index/withdraw', {
     ...params,
   });

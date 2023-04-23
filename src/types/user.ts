@@ -21,3 +21,12 @@ export interface TeamData {
   address: string;
   team_usdt: number;
 }
+
+export interface Withdraw {
+  addr: string;
+  amount: string;
+  contract_addr: string;
+  data: string;
+  order_no: string;
+  time: number;
+}
