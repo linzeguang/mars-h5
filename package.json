@@ -11,7 +11,16 @@
     "prettier:write": "prettier --write \"**/*.{ts,tsx}\"",
     "jest": "jest",
     "jest:watch": "jest --watch",
-    "test": "npm run typecheck && npm run prettier && npm run lint && npm run jest && npm run build"
+    "test": "npm run typecheck && npm run prettier && npm run lint && npm run jest && npm run build",
+    "release": "standard-version",
+    "postrelease": "git push && git push --tags --no-verify",
+    "version-tag:major": "npm run release -- --release-as major",
+    "version-tag:minor": "npm run release -- --release-as minor",
+    "version-tag:patch": "npm run release -- --release-as patch",
+    "version-tag:premajor": "npm run version-tag:major -- --prerelease",
+    "version-tag:preminor": "npm run version-tag:minor -- --prerelease",
+    "version-tag:prepatch": "npm run version-tag:patch -- --prerelease",
+    "version-tag:prerelease": "npm run release -- --prerelease"
   },
   "dependencies": {
     "@emotion/css": "^11.10.6",
@@ -57,6 +66,7 @@
     "jest-environment-jsdom": "^29.4.1",
     "mockjs": "^1.1.0",
     "prettier": "^2.8.3",
+    "standard-version": "^9.5.0",
     "ts-jest": "^29.0.5",
     "typescript": "^4.9.5",
     "vite": "^4.1.1",
