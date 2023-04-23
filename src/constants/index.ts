@@ -82,7 +82,7 @@ export const defaultHeld: UsersCombo = {
   order_status: 0,
 };
 
-export const inviteQueryKey = 'inviteToken';
+export const inviteQueryKey = 'InviteAddress';
 
 export enum INVITE_TYPE {
   TEAM,

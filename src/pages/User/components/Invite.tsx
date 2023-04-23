@@ -21,7 +21,7 @@ const Invite: React.FC<WithTranslation> = ({ t }) => {
   const { address } = useAccount();
 
   const inviteUrl = useMemo(
-    () => (address ? `${origin}/#/?${inviteQueryKey}=${address}` : '**'),
+    () => (address ? `${origin}/?${inviteQueryKey}=${address}` : '**'),
     [address, origin]
   );
 

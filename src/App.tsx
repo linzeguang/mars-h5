@@ -1,5 +1,5 @@
 import React, { ReactNode, Suspense } from 'react';
-import { HashRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import Layout from './layout';
 
@@ -12,7 +12,7 @@ const CheckIn = React.lazy(() => import('@/pages/CheckIn'));
 const Answer = React.lazy(() => import('@/pages/Answer'));
 
 const App: React.FC = () => (
-  <HashRouter>
+  <BrowserRouter>
     <Routes>
       <Route element={<Layout />}>
         <Route path="/" element={lazyload(<Market />)} />
@@ -22,7 +22,7 @@ const App: React.FC = () => (
         <Route path="user" element={lazyload(<User />)} />
       </Route>
     </Routes>
-  </HashRouter>
+  </BrowserRouter>
 );
 
 export default App;

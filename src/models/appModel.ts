@@ -8,7 +8,7 @@ import { getUrlParam } from '@/utils/format';
 
 export interface AppState {
   token?: string;
-  inviteToken?: string;
+  inviteAddress?: string;
   loginState?: LOGIN_STATE;
   balance?: number;
   usdt?: number;
@@ -20,7 +20,7 @@ export interface AppState {
 
 const initialState: AppState = {
   token: undefined,
-  inviteToken: undefined,
+  inviteAddress: undefined,
   loginState: undefined,
   balance: undefined,
   usdt: undefined,
@@ -31,8 +31,8 @@ const initialState: AppState = {
 export const appModel = defineModel('app', {
   initialState,
   reducers: {
-    setInviteToken(state, token: string) {
-      state.inviteToken = token;
+    setInviteAddress(state, token: string) {
+      state.inviteAddress = token;
     },
   },
   methods: {
@@ -85,8 +85,8 @@ export const appModel = defineModel('app', {
   },
   events: {
     onInit() {
-      const inviteToken = getUrlParam(inviteQueryKey);
-      inviteToken && this.setInviteToken(inviteToken);
+      const inviteAddress = getUrlParam(inviteQueryKey);
+      inviteAddress && this.setInviteAddress(inviteAddress);
     },
   },
 });
