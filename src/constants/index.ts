@@ -31,8 +31,11 @@ export enum SORT_BY {
 }
 
 export enum MARKET_TYPE {
-  ALL = 0, // 全部
-  REC = 1, // 推荐
+  U100 = 100,
+  U500 = 500,
+  U1000 = 1000,
+  U3000 = 3000,
+  U10000 = 10000,
 }
 
 export enum HELD_TYPE {

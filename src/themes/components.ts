@@ -89,12 +89,14 @@ export default {
     styles: {
       root: {
         display: 'flex',
+        scrollbarWidth: 'none',
       },
     },
   },
   Radio: {
     styles: (theme) => ({
       root: {
+        whiteSpace: 'nowrap',
         padding: `${rem(8)} ${rem(8)} ${rem(14)}`,
         opacity: 0.5,
 

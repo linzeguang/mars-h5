@@ -56,9 +56,7 @@ const PayDrawerProvider: React.FC<PropsWithChildren & WithTranslation> = ({ chil
   const [prepayData, setPrepayData] = useState<PrepayData>();
   const [step, toggleStep] = useToggle([1, 2, 3]);
 
-  const { balance, transfer, isLoading } = useTransfer(
-    comboInfo && coinInfo[comboInfo.type].address
-  );
+  const { transfer, isLoading } = useTransfer(comboInfo && coinInfo[comboInfo.type].address);
 
   const fetchInfo = useCallback(async () => {
     if (!token || !comboInfo) return;
@@ -95,8 +93,6 @@ const PayDrawerProvider: React.FC<PropsWithChildren & WithTranslation> = ({ chil
     const address = coinInfo[comboInfo.type].transferAddress;
     const amount = prepayData.pay_daibi_num.toString();
 
-    if (Number(balance) < Number(amount)) return toast.warn(t('insufficient.balance'));
-
     transfer?.({
       recklesslySetUnpreparedArgs: [address, utils.parseEther(amount)],
     })
@@ -104,9 +100,9 @@ const PayDrawerProvider: React.FC<PropsWithChildren & WithTranslation> = ({ chil
         toggleStep(3);
       })
       .catch((error) => {
-        toast.error(error.reason || error.error.data.message);
+        toast.error(error.reason || error.error?.data.message || error.cause?.reason || error);
       });
-  }, [balance, comboInfo, prepayData, t, toggleStep, transfer]);
+  }, [comboInfo, prepayData, toggleStep, transfer]);
 
   const handlePay = useCallback(async () => {
     if (step === 1) return fetchPrepay();
@@ -117,7 +113,6 @@ const PayDrawerProvider: React.FC<PropsWithChildren & WithTranslation> = ({ chil
   useEffect(() => {
     if (opened) {
       toggleStep(1);
-      setComboInfo(undefined);
       fetchInfo();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

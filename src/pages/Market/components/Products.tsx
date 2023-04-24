@@ -35,25 +35,37 @@ const Sort = styled(SortSvgr)<{
   return { ...baseStyle, '#up': { opacity: 0.3 } };
 });
 
-const Products: React.FC<WithTranslation> = ({ t }) => {
+const Products: React.FC<WithTranslation> = () => {
   const theme = useMantineTheme();
   const { token } = useModel(appModel);
-  const [type, toggleType] = useToggle<MARKET_TYPE>([MARKET_TYPE.ALL, MARKET_TYPE.REC]);
+  const [type, toggleType] = useState<MARKET_TYPE>(MARKET_TYPE.U100);
   const [sort, toggleSort] = useToggle<SORT_BY>([SORT_BY.UP, SORT_BY.DOWN]);
   const [commboList, setCommboList] = useState<ComboInfo[]>([defaultCommbo]);
 
   const tabs = useMemo<MarketTab[]>(
     () => [
       {
-        name: t('all'),
-        value: MARKET_TYPE.ALL,
+        name: '100 U',
+        value: MARKET_TYPE.U100,
       },
       {
-        name: t('recommend'),
-        value: MARKET_TYPE.REC,
+        name: '500 U',
+        value: MARKET_TYPE.U500,
+      },
+      {
+        name: '1000 U',
+        value: MARKET_TYPE.U1000,
+      },
+      {
+        name: '3000 U',
+        value: MARKET_TYPE.U3000,
+      },
+      {
+        name: '10000 U',
+        value: MARKET_TYPE.U10000,
       },
     ],
-    [t]
+    []
   );
 
   const fetchCommbos = useCallback(async () => {
@@ -83,14 +95,16 @@ const Products: React.FC<WithTranslation> = ({ t }) => {
         }}
       >
         <Tabs className="tabs">
-          <Radio.Group
-            value={type as unknown as string}
-            onChange={(val) => toggleType(val as unknown as MARKET_TYPE)}
-          >
-            {tabs.map(({ name, value }) => (
-              <Radio key={value} value={value} label={name} />
-            ))}
-          </Radio.Group>
+          <Flex sx={{ flex: 1, overflowX: 'scroll' }}>
+            <Radio.Group
+              value={Number(type) as unknown as string}
+              onChange={(val) => toggleType(val as unknown as MARKET_TYPE)}
+            >
+              {tabs.map(({ name, value }) => (
+                <Radio key={value} value={value} label={name} />
+              ))}
+            </Radio.Group>
+          </Flex>
           <Sort sort={sort} onClick={() => toggleSort()} />
         </Tabs>
       </Affix>
