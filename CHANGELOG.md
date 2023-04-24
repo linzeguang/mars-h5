@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.1-6](https://github.com/linzeguang/mars-h5/compare/v0.0.1-5...v0.0.1-6) (2023-04-24)
+
+
+### Features
+
+* 新增market过滤字段 ([7f2b68a](https://github.com/linzeguang/mars-h5/commit/7f2b68a64112ed7c8197ef194043d373aee199e5))
+
+
+### Bug Fixes
+
+* 解决横向滚动条，新增语言包，更换U收款地址 ([05ad8ec](https://github.com/linzeguang/mars-h5/commit/05ad8ec8e2ea65bf0af9fd3ad6580719b736156d))
+* lint ([15ad259](https://github.com/linzeguang/mars-h5/commit/15ad2597f6425c5319b88b914063dcbe54564e2f))
+
 ### [0.0.1-5](https://github.com/linzeguang/mars-h5/compare/v0.0.1-4...v0.0.1-5) (2023-04-24)
 
 
