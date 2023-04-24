@@ -36,4 +36,7 @@ export default {
   'copy.success': '复制成功',
   close: '关闭',
   'insufficient.balance': '余额不足',
+  level: '等级',
+  team: '贡献值',
+  invite: '人脉值',
 };

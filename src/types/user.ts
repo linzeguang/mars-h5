@@ -10,6 +10,7 @@ export interface UserParams {
 export interface Balance {
   balance: number;
   usdt: number;
+  level: string;
 }
 
 export interface InviteNum {

@@ -11,6 +11,7 @@ export interface AppState {
   inviteAddress?: string;
   loginState?: LOGIN_STATE;
   balance?: number;
+  level?: string;
   usdt?: number;
   zhi_count?: number;
   team_count?: number;
@@ -26,6 +27,7 @@ const initialState: AppState = {
   usdt: undefined,
   zhi_count: undefined,
   team_count: undefined,
+  level: undefined,
 };
 
 export const appModel = defineModel('app', {
@@ -55,10 +57,10 @@ export const appModel = defineModel('app', {
     async fetchBalance(parmas: UserParams) {
       const {
         state,
-        list: { balance, usdt },
+        list: { balance, usdt, level },
       } = await api.userbalance(parmas);
       if (state === 200) {
-        this.setState({ balance, usdt });
+        this.setState({ balance, usdt, level });
       }
     },
     async fetchInvitenum(parmas: UserParams) {

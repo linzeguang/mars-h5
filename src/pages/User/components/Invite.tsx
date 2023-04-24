@@ -2,12 +2,14 @@ import React, { useEffect, useMemo } from 'react';
 import { WithTranslation, withTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import useClipboard from 'react-use-clipboard';
+import { useModel } from 'foca';
 import { useAccount } from 'wagmi';
 import styled from '@emotion/styled';
 import { Flex, rem, Space } from '@mantine/core';
 
 import { ThinText, WeightText } from '@/components/Uikit';
 import { inviteQueryKey } from '@/constants';
+import { appModel } from '@/models/appModel';
 
 const LinkBox = styled(Flex)`
   height: ${rem(44)};
@@ -20,6 +22,7 @@ const LinkBox = styled(Flex)`
 const Invite: React.FC<WithTranslation> = ({ t }) => {
   const { origin } = window.location;
   const { address } = useAccount();
+  const { level } = useModel(appModel);
 
   const inviteUrl = useMemo(
     () => (address ? `${origin}/?${inviteQueryKey}=${address}` : '**'),
@@ -34,7 +37,10 @@ const Invite: React.FC<WithTranslation> = ({ t }) => {
 
   return (
     <>
-      <WeightText>{t('contribution')}</WeightText>
+      <Flex justify="space-between" align="center">
+        <WeightText>{t('level')}</WeightText>
+        <WeightText>{level}</WeightText>
+      </Flex>
       <Space h={rem(8)} />
       <LinkBox align="center">
         <ThinText size="sm" opacity={0.5}>

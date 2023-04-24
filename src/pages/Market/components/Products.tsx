@@ -3,7 +3,7 @@ import { WithTranslation, withTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import { useModel } from 'foca';
 import styled from '@emotion/styled';
-import { Flex, Radio, rem, Stack, useMantineTheme } from '@mantine/core';
+import { Box, Flex, Radio, rem, Stack, useMantineTheme } from '@mantine/core';
 import { useToggle } from '@mantine/hooks';
 
 import { api } from '@/apis';
@@ -28,6 +28,7 @@ const Sort = styled(SortSvgr)<{
   sort: SORT_BY;
 }>(({ sort }) => {
   const baseStyle = {
+    marginLeft: rem(8),
     width: rem(24),
     height: rem(24),
   };
@@ -95,16 +96,33 @@ const Products: React.FC<WithTranslation> = () => {
         }}
       >
         <Tabs className="tabs">
-          <Flex sx={{ flex: 1, overflowX: 'scroll' }}>
-            <Radio.Group
-              value={Number(type) as unknown as string}
-              onChange={(val) => toggleType(val as unknown as MARKET_TYPE)}
-            >
-              {tabs.map(({ name, value }) => (
-                <Radio key={value} value={value} label={name} />
-              ))}
-            </Radio.Group>
-          </Flex>
+          <Radio.Group
+            value={Number(type) as unknown as string}
+            onChange={(val) => toggleType(val as unknown as MARKET_TYPE)}
+            sx={{
+              flex: 1,
+              overflowX: 'scroll',
+              '::-webkit-scrollbar': { display: 'none' },
+            }}
+          >
+            {tabs.map(({ name, value }) => (
+              <Radio
+                key={value}
+                value={value}
+                label={name}
+                onClick={(ev) =>
+                  (
+                    (ev.target as HTMLInputElement).parentNode?.parentNode
+                      ?.parentNode as HTMLDivElement
+                  ).scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'nearest',
+                    inline: 'center',
+                  })
+                }
+              />
+            ))}
+          </Radio.Group>
           <Sort sort={sort} onClick={() => toggleSort()} />
         </Tabs>
       </Affix>

@@ -89,7 +89,6 @@ export default {
     styles: {
       root: {
         display: 'flex',
-        scrollbarWidth: 'none',
       },
     },
   },
