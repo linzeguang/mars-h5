@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.1-5](https://github.com/linzeguang/mars-h5/compare/v0.0.1-4...v0.0.1-5) (2023-04-24)
+
+
+### Features
+
+* 地址配置化 ([6cd76e1](https://github.com/linzeguang/mars-h5/commit/6cd76e1e327558d6028e6174e200bf724b3d6fe3))
+
 ### [0.0.1-4](https://github.com/linzeguang/mars-h5/compare/v0.0.1-3...v0.0.1-4) (2023-04-23)
 
 
