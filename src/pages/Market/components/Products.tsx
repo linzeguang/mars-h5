@@ -3,7 +3,7 @@ import { WithTranslation, withTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import { useModel } from 'foca';
 import styled from '@emotion/styled';
-import { Box, Flex, Radio, rem, Stack, useMantineTheme } from '@mantine/core';
+import { Flex, Radio, rem, Stack, useMantineTheme } from '@mantine/core';
 import { useToggle } from '@mantine/hooks';
 
 import { api } from '@/apis';
