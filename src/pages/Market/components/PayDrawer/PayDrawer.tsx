@@ -1,6 +1,7 @@
 import React, { PropsWithChildren, useCallback, useEffect, useState } from 'react';
 import { WithTranslation, withTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
+import { utils } from 'ethers';
 import { useModel } from 'foca';
 import styled from '@emotion/styled';
 import { Box, Button, Card, createStyles, Drawer, Flex, rem, Space } from '@mantine/core';
@@ -9,6 +10,7 @@ import { useDisclosure, useToggle } from '@mantine/hooks';
 import { api } from '@/apis';
 import { CheckCircleSvgr } from '@/components/Svgr';
 import { WeightText } from '@/components/Uikit';
+import { coinInfo } from '@/constants';
 import { useTransfer } from '@/contracts/hooks';
 import { appModel } from '@/models/appModel';
 import { ComboInfo, PrepayData } from '@/types/market';
@@ -54,7 +56,9 @@ const PayDrawerProvider: React.FC<PropsWithChildren & WithTranslation> = ({ chil
   const [prepayData, setPrepayData] = useState<PrepayData>();
   const [step, toggleStep] = useToggle([1, 2, 3]);
 
-  const { writeAsync: transfer, isLoading } = useTransfer(prepayData?.pay_daibi_num);
+  const { balance, transfer, isLoading } = useTransfer(
+    comboInfo && coinInfo[comboInfo.type].address
+  );
 
   const fetchInfo = useCallback(async () => {
     if (!token || !comboInfo) return;
@@ -73,12 +77,12 @@ const PayDrawerProvider: React.FC<PropsWithChildren & WithTranslation> = ({ chil
     if (!token || !comboInfo) return;
     loadingHander.open();
     try {
-      const { state, msg, orderno, pay_daibi_num, pay_price_daibi } = await api.prepay({
+      const { state, msg, orderno, pay_daibi_num, pay_price_daibi, type } = await api.prepay({
         combo_id: comboInfo.combo_id,
         token,
       });
       if (state !== 200) throw msg;
-      setPrepayData({ orderno, pay_daibi_num, pay_price_daibi });
+      setPrepayData({ orderno, pay_daibi_num, pay_price_daibi, type });
       toggleStep(2);
     } catch (error) {
       toast.error(error as string);
@@ -87,15 +91,22 @@ const PayDrawerProvider: React.FC<PropsWithChildren & WithTranslation> = ({ chil
   }, [comboInfo, loadingHander, toggleStep, token]);
 
   const fetchTransfer = useCallback(() => {
-    if (!prepayData) return;
-    transfer?.()
+    if (!prepayData || !comboInfo) return;
+    const address = coinInfo[comboInfo.type].transferAddress;
+    const amount = prepayData.pay_daibi_num.toString();
+
+    if (Number(balance) < Number(amount)) return toast.warn(t('insufficient.balance'));
+
+    transfer?.({
+      recklesslySetUnpreparedArgs: [address, utils.parseEther(amount)],
+    })
       .then(() => {
         toggleStep(3);
       })
       .catch((error) => {
-        toast.error(error.code);
+        toast.error(error.reason || error.error.data.message);
       });
-  }, [prepayData, toggleStep, transfer]);
+  }, [balance, comboInfo, prepayData, t, toggleStep, transfer]);
 
   const handlePay = useCallback(async () => {
     if (step === 1) return fetchPrepay();
@@ -105,6 +116,8 @@ const PayDrawerProvider: React.FC<PropsWithChildren & WithTranslation> = ({ chil
 
   useEffect(() => {
     if (opened) {
+      toggleStep(1);
+      setComboInfo(undefined);
       fetchInfo();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -140,9 +153,15 @@ const PayDrawerProvider: React.FC<PropsWithChildren & WithTranslation> = ({ chil
         {comboInfo && step === 1 && <InfoCard inPay info={comboInfo} />}
         {step !== 1 && (
           <Box>
-            <WeightText size="sm" pl={rem(8)} opacity={0.8}>
-              {t('order.number')}: {prepayData?.orderno}
-            </WeightText>
+            <Flex align="center" justify="space-between">
+              <WeightText size="sm" pl={rem(8)} opacity={0.8}>
+                {t('order.number')}: {prepayData?.orderno}
+              </WeightText>
+              {/* <WeightText size="sm" pl={rem(8)} opacity={0.8}>
+                {t('balance')}: {toFixed(Number(balance))}{' '}
+                {comboInfo && coinInfo[comboInfo.type].name}
+              </WeightText> */}
+            </Flex>
             <Space h="md" />
             {step === 2 ? (
               <Card>

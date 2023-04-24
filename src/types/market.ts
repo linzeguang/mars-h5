@@ -1,4 +1,4 @@
-import { MARKET_TYPE, SORT_BY } from '@/constants';
+import { COIN, MARKET_TYPE, SORT_BY } from '@/constants';
 
 export interface MarketTab {
   name: string;
@@ -20,6 +20,7 @@ export interface ComboInfo {
   combo_income_lv: string;
   token_earn: string;
   token_in: string;
+  type: COIN; // 判断支付币种
 }
 
 export interface PrepayParams {
@@ -31,4 +32,5 @@ export interface PrepayData {
   orderno: string;
   pay_price_daibi: string;
   pay_daibi_num: number;
+  type: COIN; // 判断支付币种
 }

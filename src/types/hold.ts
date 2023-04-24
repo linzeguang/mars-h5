@@ -30,6 +30,8 @@ export interface UsersCombo {
   yest_income_usdt: number; // 昨日收益U
   yest_income_benbi: number; // 昨日收益 代币
   order_status: HELD_STATUS; // 订单状态  1 未支付 2 已取消 3 进行中 3 已到期
+  token_earn: string;
+  token_in: string;
 }
 
 export interface UserCommbosParams {

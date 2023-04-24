@@ -4,7 +4,10 @@
 
 interface ImportMetaEnv {
   readonly VITE_BASE_URL: string;
-  // 更多环境变量...
+  readonly VITE_MARS_TRANSFER_ADDRESS: `0x${string}`;
+  readonly VITE_USDT_TRANSFER_ADDRESS: `0x${string}`;
+  readonly VITE_MARS_ADDRESS: `0x${string}`;
+  readonly VITE_USDT_ADDRESS: `0x${string}`;
 }
 
 interface ImportMeta {

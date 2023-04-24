@@ -1,6 +1,24 @@
 import { UsersCombo } from '@/types/hold';
 import { ComboInfo } from '@/types/market';
 
+export enum COIN {
+  MARS = 1,
+  USDT = 2,
+}
+
+export const coinInfo = {
+  [COIN.MARS]: {
+    name: 'MARS',
+    address: import.meta.env.VITE_MARS_ADDRESS,
+    transferAddress: import.meta.env.VITE_MARS_TRANSFER_ADDRESS,
+  },
+  [COIN.USDT]: {
+    name: 'USDT',
+    address: import.meta.env.VITE_USDT_ADDRESS,
+    transferAddress: import.meta.env.VITE_USDT_TRANSFER_ADDRESS,
+  },
+};
+
 export enum LOGIN_STATE {
   SUCCESS = 200,
   HIGHER_UNREGISTER = 201,
@@ -65,8 +83,9 @@ export const defaultCommbo: ComboInfo = {
   combo_cycle: '**' as unknown as number,
   combo_price: '**' as unknown as number,
   combo_income_lv: '**',
-  token_earn: 'MARS',
-  token_in: 'MARS',
+  token_earn: coinInfo[COIN.USDT].name,
+  token_in: coinInfo[COIN.MARS].name,
+  type: COIN.USDT,
 };
 
 export const defaultHeld: UsersCombo = {
@@ -80,6 +99,8 @@ export const defaultHeld: UsersCombo = {
   yest_income_usdt: '**' as unknown as number,
   yest_income_benbi: '**' as unknown as number,
   order_status: 0,
+  token_earn: coinInfo[COIN.USDT].name,
+  token_in: coinInfo[COIN.MARS].name,
 };
 
 export const inviteQueryKey = 'InviteAddress';

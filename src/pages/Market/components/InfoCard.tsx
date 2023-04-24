@@ -161,7 +161,7 @@ const InfoCard: React.FC<{ inPay?: boolean; info: ComboInfo } & WithTranslation>
           variant={inPay ? 'subtle' : 'filled'}
           onClick={handleClick}
         >
-          {combo_price} U
+          {combo_price} USDT
         </Button>
       </Box>
     </Card>

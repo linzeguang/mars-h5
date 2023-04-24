@@ -35,4 +35,5 @@ export default {
   copy: '复制',
   'copy.success': '复制成功',
   close: '关闭',
+  'insufficient.balance': '余额不足',
 };

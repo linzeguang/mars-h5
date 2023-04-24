@@ -1,22 +1,35 @@
 import { utils } from 'ethers';
-import { useContractWrite, usePrepareContractWrite } from 'wagmi';
+import { useAccount, useContractRead, useContractWrite, usePrepareContractWrite } from 'wagmi';
 
 import { erc20Abi, withdrawAbi } from './abi';
 
-export const marsAddress = '0x93B11027ae9d6f2443428684C0160283EbB7F801';
-export const transferAddress = '0x6b3CA048463151e18631E15b2457824510887Bb5';
+export const marsAddress = import.meta.env.VITE_MARS_ADDRESS;
+export const usdtAddress = import.meta.env.VITE_USDT_ADDRESS;
 export const withdrawAddress = '0x48fDaf4dCa575320226f1cAC6628ecaA98ea48Fd';
 
-export const useTransfer = (amount?: number) => {
-  const { config } = usePrepareContractWrite({
-    address: marsAddress,
+export const useTransfer = (tokenAddress?: `0x${string}`) => {
+  const { address } = useAccount();
+  const { config: transferConfig } = usePrepareContractWrite({
+    address: tokenAddress,
     abi: erc20Abi,
     functionName: 'transfer',
-    args: [transferAddress, utils.parseUnits((amount || 0).toString())],
     enabled: false,
+    suspense: true,
   });
 
-  return useContractWrite({ ...config, mode: 'recklesslyUnprepared' });
+  const { data: balance = '0' } = useContractRead({
+    address: tokenAddress,
+    abi: erc20Abi,
+    functionName: 'balanceOf',
+    args: [address],
+  });
+
+  const { writeAsync: transfer, isLoading } = useContractWrite({
+    ...transferConfig,
+    mode: 'recklesslyUnprepared',
+  });
+
+  return { balance: utils.formatUnits(balance as any), transfer, isLoading };
 };
 
 export const useWithdraw = () => {

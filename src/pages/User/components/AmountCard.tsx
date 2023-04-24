@@ -9,6 +9,7 @@ import { useDisclosure } from '@mantine/hooks';
 import { api } from '@/apis';
 import { WithdrawSvgr } from '@/components/Svgr';
 import { ThinText, WeightText } from '@/components/Uikit';
+import { COIN, coinInfo } from '@/constants';
 import { useWithdraw } from '@/contracts/hooks';
 import { appModel } from '@/models/appModel';
 import { toFixed } from '@/utils/format';
@@ -61,7 +62,7 @@ const AmountCard: React.FC<WithTranslation> = ({ t }) => {
           {toFixed(balance)}
         </WeightText>
         <WeightText size={rem(20)} color="#fff">
-          &nbsp;MARS
+          &nbsp;{coinInfo[COIN.MARS].name}
         </WeightText>
       </Flex>
       <Flex align="baseline">

@@ -2,6 +2,7 @@ import BigNumber from 'bignumber.js';
 
 export const toFixed = (num?: BigNumber.Value) => {
   if (num !== 0 && !num) return '**';
+  if (typeof num === 'string' && Number.isNaN(parseInt(num, 10))) return '**';
 
   return new BigNumber(num).toFixed(2, 1);
 };

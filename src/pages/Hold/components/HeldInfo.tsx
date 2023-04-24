@@ -63,7 +63,7 @@ const Card = styled(Grid)({
 const HeldInfo: React.FC<WithTranslation & { info: UsersCombo }> = ({ t, i18n, info }) => {
   const { classes } = useStyles();
   const { language } = i18n;
-  const { combo_name, combo_name_en, order_status } = info;
+  const { combo_name, combo_name_en, order_status, token_earn, token_in } = info;
   const { combo_price, pay_daibi_num } = info;
   const { yest_income_usdt, yest_income_benbi } = info;
   const { combo_income_usdt, combo_income_benbi } = info;
@@ -80,7 +80,9 @@ const HeldInfo: React.FC<WithTranslation & { info: UsersCombo }> = ({ t, i18n, i
             <ThinText className={classes.leftLabel}>{t('amount')}</ThinText>
             <Box className={classes.leftValues}>
               <WeightText className={classes.usdtAmount}>{toFixed(combo_price)} U</WeightText>
-              <ThinText className={classes.marsAmount}>≈ {toFixed(pay_daibi_num)} MARS</ThinText>
+              <ThinText className={classes.marsAmount}>
+                ≈ {toFixed(pay_daibi_num)} {token_in}
+              </ThinText>
             </Box>
           </Grid.Col>
           <Grid.Col span={4} className={classes.leftCenter}>
@@ -88,7 +90,7 @@ const HeldInfo: React.FC<WithTranslation & { info: UsersCombo }> = ({ t, i18n, i
             <Box className={classes.leftValues}>
               <WeightText className={classes.usdtAmount}>{toFixed(yest_income_usdt)} U</WeightText>
               <ThinText className={classes.marsAmount}>
-                ≈ {toFixed(yest_income_benbi)} MARS
+                ≈ {toFixed(yest_income_benbi)} {token_earn}
               </ThinText>
             </Box>
           </Grid.Col>
@@ -97,7 +99,7 @@ const HeldInfo: React.FC<WithTranslation & { info: UsersCombo }> = ({ t, i18n, i
             <Box className={classes.leftValues}>
               <WeightText className={classes.usdtAmount}>{toFixed(combo_income_usdt)} U</WeightText>
               <ThinText className={classes.marsAmount}>
-                ≈ {toFixed(combo_income_benbi)} MARS
+                ≈ {toFixed(combo_income_benbi)} {token_earn}
               </ThinText>
             </Box>
           </Grid.Col>
