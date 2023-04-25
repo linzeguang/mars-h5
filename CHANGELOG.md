@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.1-7](https://github.com/linzeguang/mars-h5/compare/v0.0.1-6...v0.0.1-7) (2023-04-25)
+
+
+### Features
+
+* 打包优化 ([6ab8449](https://github.com/linzeguang/mars-h5/commit/6ab8449285130e07fe8fdb441e32a0ec7f5cdb21))
+* 开始打包优化 ([2a5b745](https://github.com/linzeguang/mars-h5/commit/2a5b745869b80655e1efbe3432658079ebf7be16))
+
 ### [0.0.1-6](https://github.com/linzeguang/mars-h5/compare/v0.0.1-5...v0.0.1-6) (2023-04-24)
 
 
