@@ -16,7 +16,7 @@ export default defineConfig({
     }),
     svgr(),
     visualizer({
-      open: true, //注意这里要设置为true，否则无效
+      open: process.argv.includes('analyzer'), //注意这里要设置为true，否则无效
       gzipSize: true,
       brotliSize: true,
     }),
@@ -27,6 +27,7 @@ export default defineConfig({
     },
   },
   build: {
+    minify: 'terser',
     terserOptions: {
       compress: {
         //生产环境时移除console
@@ -34,8 +35,34 @@ export default defineConfig({
         drop_debugger: true,
       },
     },
-    reportCompressedSize: false,
-    sourcemap: false,
+    rollupOptions: {
+      output: {
+        chunkFileNames: 'js/[name]-[hash].js',
+        entryFileNames: 'js/[name]-[hash].js',
+        assetFileNames: 'static/[name]-[hash].[ext]',
+        manualChunks: {
+          react: [
+            'axios',
+            'react',
+            'react-dom',
+            'react-router-dom',
+            'react-toastify',
+            'react-use-clipboard',
+            'foca',
+          ],
+          i18n: ['react-i18next', 'i18next'],
+          web3: ['wagmi', 'ethers', 'bignumber.js'],
+          uikit: [
+            '@mantine/core',
+            '@mantine/form',
+            '@mantine/hooks',
+            '@emotion/css',
+            '@emotion/react',
+            '@emotion/styled',
+          ],
+        },
+      },
+    },
   },
   server: {
     proxy: {
