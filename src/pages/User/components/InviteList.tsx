@@ -44,7 +44,7 @@ const InviteList: React.FC<WithTranslation> = ({ t }) => {
           <Flex direction="column" align="center">
             <Flex align="center" gap={rem(8)}>
               <TeamSvgr />
-              <WeightText size="xs" color="#fff">
+              <WeightText size="sm" color="#fff">
                 {t('team')}
               </WeightText>
             </Flex>
@@ -62,7 +62,7 @@ const InviteList: React.FC<WithTranslation> = ({ t }) => {
           <Flex direction="column" align="center">
             <Flex align="center" gap={rem(8)}>
               <TuijianSvgr />
-              <WeightText size="md" color="#fff">
+              <WeightText size="sm" color="#fff">
                 {t('invite')}
               </WeightText>
             </Flex>

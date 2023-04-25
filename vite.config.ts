@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite';
-import svgr from 'vite-plugin-svgr';
 import visualizer from 'rollup-plugin-visualizer';
+import svgr from 'vite-plugin-svgr';
 import react from '@vitejs/plugin-react';
 
 const path = require('path');
@@ -25,6 +25,17 @@ export default defineConfig({
     alias: {
       '@': path.join(__dirname, 'src'),
     },
+  },
+  build: {
+    terserOptions: {
+      compress: {
+        //生产环境时移除console
+        drop_console: true,
+        drop_debugger: true,
+      },
+    },
+    reportCompressedSize: false,
+    sourcemap: false,
   },
   server: {
     proxy: {
