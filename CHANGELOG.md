@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.1-10](https://github.com/linzeguang/mars-h5/compare/v0.0.1-9...v0.0.1-10) (2023-04-26)
+
+
+### Features
+
+* 添加注册校验接口，修改登录注册流程 ([375a0c1](https://github.com/linzeguang/mars-h5/commit/375a0c15f0755f20ba5d02cb4057b0418b517410))
+* 新增持有收益弹窗 ([62c6150](https://github.com/linzeguang/mars-h5/commit/62c61500827783544f390e9509e1a1433375eb92))
+
 ### [0.0.1-9](https://github.com/linzeguang/mars-h5/compare/v0.0.1-8...v0.0.1-9) (2023-04-26)
 
 ### [0.0.1-8](https://github.com/linzeguang/mars-h5/compare/v0.0.1-7...v0.0.1-8) (2023-04-26)
