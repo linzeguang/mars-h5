@@ -2,7 +2,7 @@ import React, { PropsWithChildren } from 'react';
 import { ToastContainer } from 'react-toastify';
 import { FocaProvider } from 'foca';
 
-import AnnouncementModal from './components/announcementModal';
+import AnnouncementModal from './components/AnnouncementModal';
 import InvitationModal from './components/InvitationModal';
 import ThemeProvider from './themes';
 import WagmiProvider, { WagmiHelper } from './wagmi';
