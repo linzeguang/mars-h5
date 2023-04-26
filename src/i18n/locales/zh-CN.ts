@@ -39,4 +39,5 @@ export default {
   level: '等级',
   team: '贡献值',
   invite: '人脉值',
+  'revenue.details': '收益明细',
 };

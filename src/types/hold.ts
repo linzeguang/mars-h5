@@ -38,3 +38,9 @@ export interface UserCommbosParams {
   type: HELD_TYPE;
   token: string;
 }
+
+export interface UserComboInfo {
+  income_usdt: string;
+  income_benbi: string;
+  add_time: string;
+}

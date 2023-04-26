@@ -1,4 +1,4 @@
-import { IncomeData, IncomeNum, UserCommbosParams, UsersCombo } from '@/types/hold';
+import { IncomeData, IncomeNum, UserComboInfo, UserCommbosParams, UsersCombo } from '@/types/hold';
 import { ComboInfo, MarketParams, PrepayData, PrepayParams } from '@/types/market';
 import {
   Announcement,
@@ -38,6 +38,11 @@ export const userscombolist = (params: UserCommbosParams) =>
       ...params,
     }
   );
+
+export const userscomboinfo = (params: { token: string; users_combo_id: number }) =>
+  services.post<IList<UserComboInfo>>('/index/userscomboinfo', {
+    ...params,
+  });
 
 export const userbalance = (params: UserParams) =>
   services.post<{ list: Balance }>('/index/userbalance', {

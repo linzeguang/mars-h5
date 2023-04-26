@@ -60,10 +60,12 @@ const Card = styled(Grid)({
   border: '1px solid #F5F8FD',
 });
 
-const HeldInfo: React.FC<WithTranslation & { info: UsersCombo }> = ({ t, i18n, info }) => {
+const HeldInfo: React.FC<
+  WithTranslation & { info: UsersCombo; handleDetail: (id: number) => void }
+> = ({ t, i18n, info, handleDetail }) => {
   const { classes } = useStyles();
   const { language } = i18n;
-  const { combo_name, combo_name_en, order_status, token_earn, token_in } = info;
+  const { combo_name, combo_name_en, order_status, token_earn, token_in, users_combo_id } = info;
   const { combo_price, pay_daibi_num } = info;
   const { yest_income_usdt, yest_income_benbi } = info;
   const { combo_income_usdt, combo_income_benbi } = info;
@@ -105,7 +107,7 @@ const HeldInfo: React.FC<WithTranslation & { info: UsersCombo }> = ({ t, i18n, i
           </Grid.Col>
         </Grid>
       </Grid.Col>
-      <Grid.Col span={1} className={classes.right}>
+      <Grid.Col span={1} className={classes.right} onClick={() => handleDetail(users_combo_id)}>
         <MoreSvgr />
       </Grid.Col>
     </Card>

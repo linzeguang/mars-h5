@@ -1,12 +1,14 @@
-import React, { useMemo } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { WithTranslation, withTranslation } from 'react-i18next';
 import styled from '@emotion/styled';
 import { Radio, rem, Stack, useMantineTheme } from '@mantine/core';
+import { useDisclosure } from '@mantine/hooks';
 
 import { Affix } from '@/components/Uikit';
 import { HELD_TYPE } from '@/constants';
 import { HeldType, IncomeNum, UsersCombo } from '@/types/hold';
 
+import HeldDetailModal from './HeldDetailModal';
 import HeldInfo from './HeldInfo';
 
 const Tabs = styled(Radio.Group)`
@@ -29,6 +31,8 @@ const Helds: React.FC<
   }
 > = ({ t, toggleType, type, commboList, incomeNum }) => {
   const theme = useMantineTheme();
+  const [opened, { open, close }] = useDisclosure(false);
+  const [usersComboId, setUsersComboId] = useState<number>();
 
   const tabs = useMemo<HeldType[]>(
     () => [
@@ -52,6 +56,14 @@ const Helds: React.FC<
     [t, incomeNum]
   );
 
+  const handleDetail = useCallback(
+    (id: number) => {
+      setUsersComboId(id);
+      open();
+    },
+    [open]
+  );
+
   return (
     <>
       <Affix
@@ -71,9 +83,10 @@ const Helds: React.FC<
       </Affix>
       <Stack pt={rem(8)} pb={rem(16)}>
         {commboList.map((info) => (
-          <HeldInfo key={info.users_combo_id} info={info} />
+          <HeldInfo key={info.users_combo_id} info={info} handleDetail={handleDetail} />
         ))}
       </Stack>
+      <HeldDetailModal opened={opened} onClose={close} usersComboId={usersComboId} />
     </>
   );
 };

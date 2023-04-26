@@ -39,4 +39,5 @@ export default {
   level: 'Level',
   team: 'Team',
   invite: 'Invite',
+  'revenue.details': 'Revenue Details',
 };
