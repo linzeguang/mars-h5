@@ -22,7 +22,7 @@ const AddressInput = styled(TextInput)`
 
 const InvitationModal: React.FC<WithTranslation> = ({ t }) => {
   const { address } = useAccount();
-  const { loginState, inviteAddress } = useModel(appModel);
+  const { loginState, inviteAddress, signature, signstr } = useModel(appModel);
   const loading = useLoading(appModel.fetchLogin);
   const [opened, { open, close }] = useDisclosure(false);
 
@@ -44,9 +44,12 @@ const InvitationModal: React.FC<WithTranslation> = ({ t }) => {
 
   const handleSubmit = useCallback(
     async (data: FormData) => {
-      address && appModel.fetchLogin({ address, ...data });
+      address &&
+        signature &&
+        signstr &&
+        appModel.fetchLogin({ address, signstr, hash: signature, ...data });
     },
-    [address]
+    [address, signature, signstr]
   );
 
   return (

@@ -34,6 +34,9 @@ export default defineConfig({
         drop_console: true,
         drop_debugger: true,
       },
+      format: {
+        ascii_only: true,
+      },
     },
     rollupOptions: {
       output: {
@@ -67,7 +70,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://8.219.8.4:1005',
+        target: 'https://api.marsclub.club',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ''),
       },

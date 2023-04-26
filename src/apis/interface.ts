@@ -1,12 +1,26 @@
 import { IncomeData, IncomeNum, UserCommbosParams, UsersCombo } from '@/types/hold';
 import { ComboInfo, MarketParams, PrepayData, PrepayParams } from '@/types/market';
-import { Balance, InviteNum, LoginParams, TeamData, UserParams, Withdraw } from '@/types/user';
+import {
+  Announcement,
+  Balance,
+  InviteNum,
+  LoginParams,
+  TeamData,
+  UserParams,
+  Withdraw,
+} from '@/types/user';
 
 import services from './services';
 import { IList } from './types';
 
+export const signStr = (address: string) =>
+  services.post<{ signstr: string }>('/pub/getSignStr', { address });
+
 export const login = (params: LoginParams) =>
   services.post<{ token: string }>('/pub/login', { ...params });
+
+export const newsInfo = (params: UserParams) =>
+  services.post<{ list: Announcement }>('/index/newsinfo', { ...params });
 
 export const combolist = (params: MarketParams) =>
   services.post<IList<ComboInfo>>('/Index/combolist', { ...params });

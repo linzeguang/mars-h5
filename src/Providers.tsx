@@ -2,6 +2,7 @@ import React, { PropsWithChildren } from 'react';
 import { ToastContainer } from 'react-toastify';
 import { FocaProvider } from 'foca';
 
+import AnnouncementModal from './components/announcementModal';
 import InvitationModal from './components/InvitationModal';
 import ThemeProvider from './themes';
 import WagmiProvider, { WagmiHelper } from './wagmi';
@@ -20,6 +21,7 @@ const Providers: React.FC<PropsWithChildren> = ({ children }) => (
           hideProgressBar
           closeButton={false}
         />
+        <AnnouncementModal />
         <InvitationModal />
         {children}
       </ThemeProvider>

@@ -8,6 +8,8 @@ import { getUrlParam } from '@/utils/format';
 
 export interface AppState {
   token?: string;
+  signstr?: string;
+  signature?: string;
   inviteAddress?: string;
   loginState?: LOGIN_STATE;
   balance?: number;
@@ -21,6 +23,8 @@ export interface AppState {
 
 const initialState: AppState = {
   token: undefined,
+  signstr: undefined,
+  signature: undefined,
   inviteAddress: undefined,
   loginState: undefined,
   balance: undefined,
@@ -36,10 +40,19 @@ export const appModel = defineModel('app', {
     setInviteAddress(state, token: string) {
       state.inviteAddress = token;
     },
+    setSignature(state, signature: string) {
+      state.signature = signature;
+    },
   },
   methods: {
     clear() {
       this.setState(initialState);
+    },
+    async fetchSign(address: string) {
+      const { signstr, state } = await api.signStr(address);
+      if (state === 200 && signstr) {
+        this.setState({ signstr });
+      }
     },
     async fetchLogin(parmas: LoginParams) {
       const { state, token } = await api.login(parmas);

@@ -1,10 +1,22 @@
 export interface LoginParams {
   address: string;
   p_address?: string;
+  signstr: string; // 要签名的字符串
+  hash: string; // 签名后获取的hash
 }
 
 export interface UserParams {
   token: string;
+}
+
+export interface Announcement {
+  add_time: number;
+  datetime: string;
+  des: string;
+  des_en: string;
+  id: number;
+  title: string;
+  title_en: string;
 }
 
 export interface Balance {
