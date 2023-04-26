@@ -13,7 +13,9 @@ import {
 import services from './services';
 import { IList } from './types';
 
-export const signStr = (address: string) =>
+export const isRegister = (address: `0x${string}`) => services.post('/pub/isreg', { address });
+
+export const signStr = (address: `0x${string}`) =>
   services.post<{ signstr: string }>('/pub/getSignStr', { address });
 
 export const login = (params: LoginParams) =>

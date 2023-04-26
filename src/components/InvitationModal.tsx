@@ -1,13 +1,11 @@
 import React, { useCallback, useEffect } from 'react';
 import { WithTranslation, withTranslation } from 'react-i18next';
 import { useLoading, useModel } from 'foca';
-import { useAccount } from 'wagmi';
 import styled from '@emotion/styled';
 import { Button, Modal, rem, TextInput } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { useDisclosure } from '@mantine/hooks';
 
-import { LOGIN_STATE } from '@/constants';
 import { appModel } from '@/models/appModel';
 import { LoginParams } from '@/types/user';
 
@@ -21,8 +19,7 @@ const AddressInput = styled(TextInput)`
 `;
 
 const InvitationModal: React.FC<WithTranslation> = ({ t }) => {
-  const { address } = useAccount();
-  const { loginState, inviteAddress, signature, signstr } = useModel(appModel);
+  const { inviteAddress, isRegister } = useModel(appModel);
   const loading = useLoading(appModel.fetchLogin);
   const [opened, { open, close }] = useDisclosure(false);
 
@@ -37,19 +34,17 @@ const InvitationModal: React.FC<WithTranslation> = ({ t }) => {
   });
 
   useEffect(() => {
-    if (!loginState) return;
-    if (loginState !== LOGIN_STATE.SUCCESS) open();
+    if (isRegister === undefined) return;
+    if (!isRegister) open();
     else close();
-  }, [close, loginState, open]);
+  }, [close, isRegister, open]);
 
   const handleSubmit = useCallback(
     async (data: FormData) => {
-      address &&
-        signature &&
-        signstr &&
-        appModel.fetchLogin({ address, signstr, hash: signature, ...data });
+      appModel.setInviteAddress(data.p_address);
+      close();
     },
-    [address, signature, signstr]
+    [close]
   );
 
   return (

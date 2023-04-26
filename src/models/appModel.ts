@@ -7,6 +7,7 @@ import { LoginParams, TeamData, UserParams } from '@/types/user';
 import { getUrlParam } from '@/utils/format';
 
 export interface AppState {
+  isRegister?: boolean;
   token?: string;
   signstr?: string;
   signature?: string;
@@ -22,6 +23,7 @@ export interface AppState {
 }
 
 const initialState: AppState = {
+  isRegister: undefined,
   token: undefined,
   signstr: undefined,
   signature: undefined,
@@ -48,7 +50,11 @@ export const appModel = defineModel('app', {
     clear() {
       this.setState(initialState);
     },
-    async fetchSign(address: string) {
+    async checkRegister(address: `0x${string}`) {
+      const { state } = await api.isRegister(address);
+      this.setState({ isRegister: state === 200 });
+    },
+    async fetchSign(address: `0x${string}`) {
       const { signstr, state } = await api.signStr(address);
       if (state === 200 && signstr) {
         this.setState({ signstr });

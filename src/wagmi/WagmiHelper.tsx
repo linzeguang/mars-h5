@@ -6,7 +6,7 @@ import { bsc } from '@wagmi/core/chains';
 import { appModel } from '@/models/appModel';
 
 const WagmiHelper: React.FC = () => {
-  const { signstr } = useModel(appModel);
+  const { signstr, isRegister, inviteAddress } = useModel(appModel);
   const { address, isConnected, connector } = useAccount();
   const { chain } = useNetwork();
   const { switchNetwork } = useSwitchNetwork({ chainId: bsc.id });
@@ -17,12 +17,16 @@ const WagmiHelper: React.FC = () => {
   }, [chain, isConnected, switchNetwork]);
 
   useEffect(() => {
-    if (address && connector) {
+    address && appModel.checkRegister(address);
+  }, [address]);
+
+  useEffect(() => {
+    if (address && connector && (isRegister || inviteAddress)) {
       appModel.fetchSign(address);
     } else {
       appModel.clear();
     }
-  }, [address, connector, isConnected]);
+  }, [address, connector, inviteAddress, isConnected, isRegister]);
 
   useEffect(() => {
     signstr && signMessage({ message: signstr });
@@ -30,9 +34,9 @@ const WagmiHelper: React.FC = () => {
 
   useEffect(() => {
     if (address && data && signstr) {
-      appModel.fetchLogin({ address, signstr, hash: data });
+      appModel.fetchLogin({ address, signstr, hash: data, p_address: inviteAddress });
     }
-  }, [address, data, signstr]);
+  }, [address, data, inviteAddress, signstr]);
 
   return null;
 };
